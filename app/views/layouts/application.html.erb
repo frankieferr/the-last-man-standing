@@ -2,13 +2,50 @@
 <html>
 <head>
   <title>TheLastManStanding</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <!-- HEADER -->
+  <div class="header">
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="navbar-header">
+            <a class="brand" href="#/patients">&nbsp;Last Man Standing</a>
+          </div>
+          <!-- <a class="brand" href="#">Last Man Standing</a> -->
+          <div class="nav-collapse pull-right">
+            <ul class="nav">
+              <li><a>SUP</a></li>
+              <li><a>SUP2</a></li>
+            </ul>
+          </div>
+      </div>
+    </div>
+  </div>
 
-<%= yield %>
+  <!-- END HEADER -->
 
+  <!-- CONTECT -->
+  <div class="content">
+    <% flash.each do |name, msg| %>
+      <div class="alert">
+        <a class="close" data-dismiss="alert">×</a>
+        <p><%=msg%></p>
+      </div>
+    <% end %>
+
+    <%= yield %>
+  </div>
+  <!-- END CONTECT -->
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>
+      Created by <b>The Swamp Things</b>
+    </p>
+  </div>
+   <!-- END FOOTER -->
 </body>
 </html>
