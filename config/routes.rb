@@ -1,5 +1,6 @@
 TheLastManStanding::Application.routes.draw do
-  devise_for :men
+  devise_for :men, :path => '', :path_names => { :sign_in => "sign_in", :sign_out => "sign_out", :sign_up => "sign_up" }
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
