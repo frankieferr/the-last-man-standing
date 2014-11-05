@@ -19,3 +19,29 @@ div.footer {
 .navbar-right {
   padding-right:10px;
 }
+
+.devise {
+  text-align:center;
+}
+
+.devise > div {
+  width:50%;
+  margin: 10px auto;
+}
+
+.devise div.row.devise-property {
+  padding: 5px 0px;
+}
+
+.devise div.row.devise-property input[type=email],
+.devise div.row.devise-property input[type=password] {
+  width:100%;
+}
+
+.devise div.row.devise-property > div:nth-child(1) {
+
+}
+
+.devise div.row.devise-property > div:nth-child(2) {
+
+}
