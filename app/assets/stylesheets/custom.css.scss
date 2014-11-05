@@ -45,3 +45,14 @@ div.footer {
 .devise div.row.devise-property > div:nth-child(2) {
 
 }
+
+#error_explanation h2 {
+  display: none !important;
+}
+
+#error_explanation ul {
+  list-style-type: none;
+  -webkit-padding-start: 0px;
+  margin-bottom: 0px;
+}
+
