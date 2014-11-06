@@ -2,12 +2,12 @@ class AddDeviseToMen < ActiveRecord::Migration
   def self.up
     change_table(:men) do |t|
       ## Database authenticatable
-      t.string :email,              :null => false, :default => ""
+      t.string :username,           :null => false, :default => ""
       t.string :encrypted_password, :null => false, :default => ""
 
-      ## Recoverable
-      t.string   :reset_password_token
-      t.datetime :reset_password_sent_at
+      # ## Recoverable
+      # t.string   :reset_password_token
+      # t.datetime :reset_password_sent_at
 
       ## Rememberable
       t.datetime :remember_created_at
@@ -18,6 +18,8 @@ class AddDeviseToMen < ActiveRecord::Migration
       t.datetime :last_sign_in_at
       t.string   :current_sign_in_ip
       t.string   :last_sign_in_ip
+
+      t.string :email
 
       ## Confirmable
       # t.string   :confirmation_token
@@ -35,8 +37,8 @@ class AddDeviseToMen < ActiveRecord::Migration
       # t.timestamps
     end
 
-    add_index :men, :email,                :unique => true
-    add_index :men, :reset_password_token, :unique => true
+    add_index :men, :username,             :unique => true
+    # add_index :men, :reset_password_token, :unique => truee
     # add_index :men, :confirmation_token,   :unique => true
     # add_index :men, :unlock_token,         :unique => true
   end
