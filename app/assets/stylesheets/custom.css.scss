@@ -34,6 +34,7 @@ div.footer {
 }
 
 .devise div.row.devise-property input[type=text],
+.devise div.row.devise-property input[type=email],
 .devise div.row.devise-property input[type=password] {
   width:100%;
 }
@@ -54,5 +55,10 @@ div.footer {
   list-style-type: none;
   -webkit-padding-start: 0px;
   margin-bottom: 0px;
+}
+
+input[disabled=true] {
+  background: lightgray;
+  border: lightgray;
 }
 
