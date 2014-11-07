@@ -1,36 +1,40 @@
-<div class="devise">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      My Details
-    </div>
-    <div class="panel-body">
-      <div class="row devise-property">
-        <div class="col-md-4">
-          <label for="man_username">Username</label>
-        </div>
-        <div class="col-md-8">
-          <input id="man_username" name="man[username]" type="text" disabled="true" value="<%= current_man.username %>">
-        </div>
+<div data-widget="men_myDetails">
+  <div class="devise">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        My Details
       </div>
+      <div class="panel-body">
+        <div class="row devise-property">
+          <div class="col-md-4">
+            <label for="man_username">Username</label>
+          </div>
+          <div class="col-md-8">
+            <input id="man_username" name="man[username]" type="text" disabled="true" value="<%= current_man.username %>">
+          </div>
+        </div>
 
-      <div class="row devise-property">
-        <div class="col-md-4">
-          <label for="man_name">Name</label>
+        <div class="row devise-property">
+          <div class="col-md-4">
+            <label for="man_name">Name</label>
+          </div>
+          <div class="col-md-8">
+            <input id="man_name" name="man[name]" type="text" value="<%= current_man.name %>">
+          </div>
         </div>
-        <div class="col-md-8">
-          <input id="man_name" name="man[name]" type="text" value="<%= current_man.name %>">
+
+        <div class="row devise-property">
+          <div class="col-md-4">
+            <label for="man_email">Email</label>
+          </div>
+          <div class="col-md-8">
+            <input id="man_email" name="man[email]" type="email" value="<%= current_man.email %>">
+          </div>
         </div>
+
+        <div><button class="btn btn-primary" data-button="submit">Submit</button></div>
       </div>
-
-      <div class="row devise-property">
-        <div class="col-md-4">
-          <label for="man_email">Email</label>
-        </div>
-        <div class="col-md-8">
-          <input id="man_email" name="man[email]" type="email" value="<%= current_man.email %>">
-        </div>
-      </div>
-
-      <div><input class="btn btn-primary" name="commit" type="submit" value="Submit"></div>
     </div>
   </div>
+</div>
+
