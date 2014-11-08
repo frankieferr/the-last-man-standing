@@ -1,41 +1,13 @@
-$.widget("tlms.men_myDetails", {
+$.widget("tlms.base", {
 
   _create: function() {
-    // var alerts_area = $.parseHTML(JST["templates/alerts_widget/alerts_area"]());
-    // $(this.element).prepend(alerts_area);
-    this.submitButton = $(this.element).find("[data-button=submit]")[0];
-    this.usernameTxt = $(this.element).find("#man_username")[0];
-    this.nameTxt = $(this.element).find("#man_name")[0];
-    this.emailTxt = $(this.element).find("#man_email")[0];
-    console.log("Frankie rules");
+
   },
 
   _init: function () {
-    this._bind(this.submitButton, "click", "_submitForm");
+
   },
 
-  _submitForm: function () {
-    var man = {
-      name: $(this.nameTxt).val(),
-      email: $(this.emailTxt).val(),
-    }
-    this._sendAjax({
-      url: "men/update_details",
-      data: {man: man},
-      success: "_hello",
-      error: "_bye",
-    });
-  },
-
-  _hello: function (data, status) {
-    console.log("hello");
-    console.log(data)
-    console.log(status)
-  },
-
-  _bye: function () {
-    console.log("bye");
-  },
 
   _sendAjax: function (data) {
     var success = function (data, status) {
@@ -68,5 +40,5 @@ $.widget("tlms.men_myDetails", {
 
   _bind: function (elem, action, callback) {
     $(elem)[action](this[callback].bind(this))
-  }
+  },
 })

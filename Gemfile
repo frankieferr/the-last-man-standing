@@ -43,7 +43,9 @@ gem 'devise'
 
 gem 'awesome_print'
 
-gem "pry-rails"
+gem 'pry-rails'
+
+gem 'ejs'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
