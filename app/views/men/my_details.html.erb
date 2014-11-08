@@ -1,38 +1,46 @@
 <div data-widget="men_myDetails">
-  <div class="devise">
+  <div class="form">
     <div class="panel panel-primary">
       <div class="panel-heading">
         My Details
       </div>
       <div class="panel-body">
-        <div class="row devise-property">
-          <div class="col-md-4">
-            <label for="man_username">Username</label>
+        <div data-widget="form"></div>
+        <form>
+          <div class="row form-property">
+            <div class="col-md-3">
+              <label for="man_username">Username</label>
+            </div>
+            <div class="col-md-9">
+              <input id="man_username" name="man[username]" type="text" disabled="true" value="<%= current_man.username %>">
+            </div>
           </div>
-          <div class="col-md-8">
-            <input id="man_username" name="man[username]" type="text" disabled="true" value="<%= current_man.username %>">
-          </div>
-        </div>
 
-        <div class="row devise-property">
-          <div class="col-md-4">
-            <label for="man_name">Name</label>
+          <div class="row form-property">
+            <div class="col-md-3">
+              <label for="man_name">Name</label>
+            </div>
+            <div class="col-md-9">
+              <input id="man_name" name="man[name]" type="text" value="<%= current_man.name %>"
+                data-rule-required="true">
+            </div>
           </div>
-          <div class="col-md-8">
-            <input id="man_name" name="man[name]" type="text" value="<%= current_man.name %>">
-          </div>
-        </div>
 
-        <div class="row devise-property">
-          <div class="col-md-4">
-            <label for="man_email">Email</label>
+          <div class="row form-property">
+            <div class="col-md-3">
+              <label for="man_email">Email</label>
+            </div>
+            <div class="col-md-9">
+              <input id="man_email" name="man[email]" type="text" value="<%= current_man.email %>"
+                data-rule-required="true"
+                data-rule-email="true">
+            </div>
           </div>
-          <div class="col-md-8">
-            <input id="man_email" name="man[email]" type="email" value="<%= current_man.email %>">
-          </div>
-        </div>
-
+        </form>
         <div><button class="btn btn-primary" data-button="submit">Submit</button></div>
+      </div>
+      <div class="panel-footer">
+        <%= link_to "Home", root_path %><br />
       </div>
     </div>
   </div>

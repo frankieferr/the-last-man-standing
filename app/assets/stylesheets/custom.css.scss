@@ -20,30 +20,33 @@ div.footer {
   padding-right:10px;
 }
 
-.devise {
+.form {
   text-align:center;
 }
 
-.devise > div {
-  width:50%;
+.form > div {
   margin: 10px auto;
 }
 
-.devise div.row.devise-property {
+.half_width {
+  width:50%;
+}
+
+.form div.row.form-property {
   padding: 5px 0px;
 }
 
-.devise div.row.devise-property input[type=text],
-.devise div.row.devise-property input[type=email],
-.devise div.row.devise-property input[type=password] {
+.form div.row.form-property input[type=text],
+.form div.row.form-property input[type=email],
+.form div.row.form-property input[type=password] {
   width:100%;
 }
 
-.devise div.row.devise-property > div:nth-child(1) {
+.form div.row.form-property > div:nth-child(1) {
 
 }
 
-.devise div.row.devise-property > div:nth-child(2) {
+.form div.row.form-property > div:nth-child(2) {
 
 }
 
@@ -60,5 +63,12 @@ div.footer {
 input[disabled=true] {
   background: lightgray;
   border: lightgray;
+}
+
+input.error {
+  border: 1px solid red !important;
+}
+textarea.error {
+  border: 1px solid red !important;
 }
 

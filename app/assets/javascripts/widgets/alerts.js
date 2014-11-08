@@ -1,6 +1,4 @@
-//= require widgets/base
-
-$.widget("tlms.alerts", $.tlms.base, {
+$.widget("tlms.alerts", {
 
   _create: function() {
     var alerts_area = $.parseHTML(JST["templates/alerts/alerts_area"]());
@@ -12,19 +10,20 @@ $.widget("tlms.alerts", $.tlms.base, {
 
   },
 
-  _addAlert: function(msg, alert_type, timeout, remove) {
-    if(alert_type == undefined) alert_type = "info";
-    if(timeout == undefined) timeout = 5000;
-    if(remove == undefined) remove = false;
-    var alert = $.parseHTML(JST["templates/alerts/alert"]({msg: msg, alert_type: alert_type}));
+  _addAlert: function(msg, data) {
+    if(!data) data = {};
+    if(!data.alertType) data.alertType = "info";
+    if(!data.timeout) data.timeout = 5000;
+    if(!data.remove) data.remove = true;
+    var alert = $.parseHTML(JST["templates/alerts/alert"]({msg: msg, alertType: data.alertType}));
     $(this.alerts_area).append(alert);
 
-    if(remove) {
+    if(data.remove) {
       window.setTimeout(function() {
         $(alert).fadeTo(500, 0).slideUp(500, function() {
             $(this).remove();
         });
-      }, timeout);
+      }, data.timeout);
     }
   }
 })
