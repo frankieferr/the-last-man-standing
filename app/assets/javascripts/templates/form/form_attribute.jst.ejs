@@ -1,0 +1,8 @@
+<div class="row form-property">
+  <div class="col-md-3">
+    <label for="{{=object}}_{{=attribute}}">{{=attribute.replace('_', ' ').capitalize()}}:</label>
+  </div>
+  <div class="col-md-9">
+    {{= JST["templates/form/form_" + type]({object:object, attribute:attribute, rules:rules } ) }}
+  </div>
+</div>
