@@ -27,17 +27,17 @@ $.widget("tlms.base", $.tlms.alerts, {
     $(elem)[action](this[callback].bind(this))
   },
 
-  _successCallbackFallback: function (data, status) {
+  _successCallbackFallback: function (response, status) {
     console.log("You didn't pass in a success function");
-    console.log("data", data);
+    console.log("response", response);
     console.log("status", status);
 
     this._addAlert("The action you performed succeeded");
   },
 
-  _errorCallbackFallback: function (data, status, error) {
+  _errorCallbackFallback: function (response, status, error) {
     console.log("An error occurred and you didn't pass in an error function");
-    console.log("data", data);
+    console.log("response", response);
     console.log("status", status);
     console.log("error", error);
 
@@ -50,11 +50,18 @@ $.widget("tlms.base", $.tlms.alerts, {
 
   _startWidgetsInsideWidget: function () {
     $.each($(this.element).find("[data-widget][data-auto-widget!=false]"), function(i, elem) {
-      $(elem)[$(elem).data("widget")]();
+      if($(elem).data("widgetized") != "true") {
+        $(elem)[$(elem).data("widget")]();
+        $(elem).attr("data-widgetized", "true");
+      }
     });
   },
 
   _callFunctionOfWidget: function (elem, theFunction, parameter) {
     return $(elem)[$(elem).data("widget")](theFunction, parameter);
+  },
+
+  _unmaskElement: function () {
+    $(this.element).unmask();
   }
 })

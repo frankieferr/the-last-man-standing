@@ -4,4 +4,11 @@
     data-rule-{{=rule}}={{=rules[rule]}}
   {{ } }}
 {{ } }}
+
+{{ if (disabled) { }}
+  disabled="true"
+{{ } }}
+
+value="{{=value}}"
+
 ></input>

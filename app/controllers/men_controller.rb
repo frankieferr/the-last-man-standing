@@ -4,6 +4,17 @@ class MenController < ApplicationController
   def my_details
   end
 
+  def current
+    respond_to do |format|
+      format.html {
+        redirect_to "/my_details" and return
+      }
+      format.json {
+        render json: current_man
+      }
+    end
+  end
+
   def update_details
     current_man.update(man_params)
     respond_to do |format|

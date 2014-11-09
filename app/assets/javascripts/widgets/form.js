@@ -1,5 +1,14 @@
 $.widget("tlms.form", {
 
+  _defaultFormAttribute: {
+    object: "object",
+    attribute: "attribute",
+    type: "input",
+    rules: {},
+    disabled: false,
+    value: "",
+  },
+
   _create: function() {
     var theForm = $.parseHTML(JST["templates/form/form_area"]());
     $(this.element).append(theForm);
@@ -16,15 +25,37 @@ $.widget("tlms.form", {
       return;
     }
 
-    for(var index in this.formAttributes) {
-      if(this.formAttributes.hasOwnProperty(index)) {
-        var formAttribute = $.parseHTML(JST["templates/form/form_attribute"](this.formAttributes[index]));
-        $(this.theForm).append(formAttribute);
-      }
+    for (var i = 0, length = this.formAttributes.length; i < length; i++) {
+      var formAttribute = this._defaultFormAttribute.copyObject();
+      formAttribute.copyObjectProperties(this.formAttributes[i]);
+      this.formAttributes[i] = formAttribute;
+      var formAttributeElem = $.parseHTML(JST["templates/form/form_attribute"]({formAttribute: formAttribute}));
+      $(this.theForm).append(formAttributeElem);
+      this.formAttributes[i]["elem"] = formAttributeElem;
     }
   },
 
   setFormAttributes: function (formAttributes) {
     this.formAttributes = formAttributes;
+  },
+
+  validateForm: function () {
+    return $(this.theForm).valid();
+  },
+
+  serializeForm: function () {
+    if(!this.formAttributes) {
+      return;
+    }
+
+    var serialized = {}
+    for (var i = 0, length = this.formAttributes.length; i < length; i++) {
+      if(!serialized[this.formAttributes[i].object]) {
+        serialized[this.formAttributes[i].object] = {};
+      }
+      serialized[this.formAttributes[i].object][this.formAttributes[i].attribute] = $(this.formAttributes[i].elem).find("input").val();
+    }
+
+    return serialized;
   },
 })

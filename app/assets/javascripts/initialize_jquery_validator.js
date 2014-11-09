@@ -1,8 +1,10 @@
 $( document ).ready( function(){
 	jQuery.validator.setDefaults({
     errorPlacement: function(error, element) {
-    	// $(element).tooltip('destroy');
-      $(element).tooltip({title: error.text(), placement: 'bottom'});
+    	$(element).tooltip('destroy');
+      setTimeout(function() {
+        $(element).tooltip({title: error.text(), placement: 'bottom'});
+      }, 200)
     },
 
     highlight: function(element, errorClass, validClass) {

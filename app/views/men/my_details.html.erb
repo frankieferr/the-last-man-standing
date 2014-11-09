@@ -6,37 +6,6 @@
       </div>
       <div class="panel-body">
         <div data-widget="form"></div>
-        <form>
-          <div class="row form-property">
-            <div class="col-md-3">
-              <label for="man_username">Username</label>
-            </div>
-            <div class="col-md-9">
-              <input id="man_username" name="man[username]" type="text" disabled="true" value="<%= current_man.username %>">
-            </div>
-          </div>
-
-          <div class="row form-property">
-            <div class="col-md-3">
-              <label for="man_name">Name</label>
-            </div>
-            <div class="col-md-9">
-              <input id="man_name" name="man[name]" type="text" value="<%= current_man.name %>"
-                data-rule-required="true">
-            </div>
-          </div>
-
-          <div class="row form-property">
-            <div class="col-md-3">
-              <label for="man_email">Email</label>
-            </div>
-            <div class="col-md-9">
-              <input id="man_email" name="man[email]" type="text" value="<%= current_man.email %>"
-                data-rule-required="true"
-                data-rule-email="true">
-            </div>
-          </div>
-        </form>
         <div><button class="btn btn-primary" data-button="submit">Submit</button></div>
       </div>
       <div class="panel-footer">

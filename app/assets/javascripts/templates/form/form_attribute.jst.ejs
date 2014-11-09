@@ -1,8 +1,8 @@
 <div class="row form-property">
   <div class="col-md-3">
-    <label for="{{=object}}_{{=attribute}}">{{=attribute.replace('_', ' ').capitalize()}}:</label>
+    <label for="{{=formAttribute.object}}_{{=formAttribute.attribute}}">{{=formAttribute.attribute.replace('_', ' ').capitalize()}}:</label>
   </div>
   <div class="col-md-9">
-    {{= JST["templates/form/form_" + type]({object:object, attribute:attribute, rules:rules } ) }}
+    {{= JST["templates/form/form_" + formAttribute.type](formAttribute) }}
   </div>
 </div>
