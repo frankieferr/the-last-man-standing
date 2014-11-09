@@ -1,5 +1,3 @@
-//= require widgets/base
-
 $.widget("tlms.men_myDetails", $.tlms.base, {
 
   _create: function() {

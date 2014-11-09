@@ -1,5 +1,3 @@
-//= require widgets/alerts
-
 $.widget("tlms.base", $.tlms.alerts, {
 
   _create: function() {
