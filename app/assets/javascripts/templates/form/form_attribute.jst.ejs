@@ -3,6 +3,6 @@
     <label for="{{=formAttribute.object}}_{{=formAttribute.attribute}}">{{=formAttribute.attribute.replace('_', ' ').capitalize()}}:</label>
   </div>
   <div class="col-md-9">
-    {{= JST["templates/form/form_" + formAttribute.type](formAttribute) }}
+    {{= JST["templates/form/form_" + formAttribute.elementType](formAttribute) }}
   </div>
 </div>

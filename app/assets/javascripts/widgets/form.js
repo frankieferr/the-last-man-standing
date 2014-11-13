@@ -3,7 +3,8 @@ $.widget("tlms.form", {
   _defaultFormAttribute: {
     object: "object",
     attribute: "attribute",
-    type: "input",
+    elementType: "input",
+    type: "text",
     rules: {},
     disabled: false,
     value: "",

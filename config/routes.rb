@@ -1,8 +1,23 @@
 TheLastManStanding::Application.routes.draw do
+
+  # Update details
   get "my_details" => "men#my_details"
-  get "men/update_details" => "men#update_details"
+  patch "men/update_details" => "men#update_details"
+
+  # Change password
+  get "change_password" => "men#change_password"
+  patch "men/update_password" => "men#update_password"
+
+  # Route to get the current man
   get "men/current" => "men#current"
-  devise_for :men, :path => '', :path_names => { :sign_in => "sign_in", :sign_out => "sign_out", :sign_up => "sign_up" }
+
+
+  # DEVISE
+  devise_for :men, :path => '', :path_names => { :sign_in => "sign_in", :sign_out => "sign_out" }, :skip => [:registrations]
+  as :man do
+    post '/' => 'devise/registrations#create', :as => 'man_registration'
+    get '/sign_up' => 'devise/registrations#new', :as => 'new_man_registration'
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
