@@ -39,7 +39,7 @@ $.widget("tlms.base", $.tlms.alerts, {
     console.log("status", status);
     console.log("error", error);
 
-    this._addAlert("Something went wrong", "danger");
+    this._addAlert("Something went wrong", {alertType: "danger"});
   },
 
   _completeCallbackFallback: function () {

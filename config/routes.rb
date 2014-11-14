@@ -1,5 +1,11 @@
 TheLastManStanding::Application.routes.draw do
 
+  get "friends" => "friends#index"
+  get "friends/getAll" => "friends#getAll"
+  post "friends/add"
+  delete "friends/remove"
+  patch "friends/accept"
+  delete "friends/decline"
   # Update details
   get "my_details" => "men#my_details"
   patch "men/update_details" => "men#update_details"
@@ -7,6 +13,10 @@ TheLastManStanding::Application.routes.draw do
   # Change password
   get "change_password" => "men#change_password"
   patch "men/update_password" => "men#update_password"
+
+  # Get all men
+  get "men/all" => "men#all"
+
 
   # Route to get the current man
   get "men/current" => "men#current"

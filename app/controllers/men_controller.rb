@@ -44,6 +44,17 @@ class MenController < ApplicationController
     end
   end
 
+  def all
+    respond_to do |format|
+      format.html {
+        redirect_to "/" and return
+      }
+      format.json {
+        render json: (Man.all.to_a - [current_man])
+      }
+    end
+  end
+
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def man_params
