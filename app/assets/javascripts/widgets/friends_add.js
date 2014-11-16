@@ -2,10 +2,9 @@ $.widget("tlms.friends_add", $.tlms.base, {
 
   _create: function() {
     this._super();
+    this.managerElement = $(this.element).closest("[data-widget=friends_manager]")[0];
     this.usernameInput = $(this.element).find("input[data-input=username]")[0];
     this.addButton = $(this.element).find("[data-button=add]")[0];
-    console.log("YOU ARE MY WORLD STEPHANIE CLARE MONICA XERRI <3")
-    this.friends = [];
     this.allUsernames = [];
 
     this._setup();
@@ -18,22 +17,12 @@ $.widget("tlms.friends_add", $.tlms.base, {
       success: "_setupAutocomplete",
       complete: "_unmaskElement",
     });
-
-    this._sendAjax({
-      url: "friends/getAll",
-      success: "_storeFriends",
-      complete: "_unmaskElement",
-    });
-  },
-
-  _storeFriends: function (response) {
-    for (var i = 0, length = response.length; i < length; i++) {
-      this.friends.push(response[i].username);
-    }
   },
 
   _setupAutocomplete: function (response) {
     this._bind(this.addButton, "click", "_submitAdd");
+
+    this.allUsernames = response.collectProperty("username");
 
     $(this.usernameInput).autocomplete({
       minLength: 0,
@@ -57,21 +46,33 @@ $.widget("tlms.friends_add", $.tlms.base, {
   _addValueToReponse: function (response) {
     for (var i = 0, length = response.length; i < length; i++) {
       response[i].value = response[i].username
-      this.allUsernames.push(response[i].username);
     }
     return response;
   },
 
   _submitAdd: function () {
-
     var selectedUsername = $(this.usernameInput).val()
+
     if(this.allUsernames.indexOf(selectedUsername) == -1) {
       this._addAlert("The username you selected doesn't exist", {alertType:"danger"});
       return;
     }
 
-    if(this.friends.indexOf(selectedUsername) != -1) {
-      this._addAlert("You are already friends or a friend request has been sent between you two", {alertType:"danger"});
+    var currentFriends = this._callFunctionOfWidget(this.managerElement, "getFriends").collectProperty("username");
+    if(currentFriends.indexOf(selectedUsername) != -1) {
+      this._addAlert("You are already friends", {alertType:"danger"});
+      return;
+    }
+
+    var currentReceivedRequests = this._callFunctionOfWidget(this.managerElement, "getReceivedRequests").collectProperty("username");
+    if(currentReceivedRequests.indexOf(selectedUsername) != -1) {
+      this._addAlert("They have already sent you a friend request", {alertType:"danger"});
+      return;
+    }
+
+    var currentSentRequests = this._callFunctionOfWidget(this.managerElement, "getSentRequests").collectProperty("username");
+    if(currentSentRequests.indexOf(selectedUsername) != -1) {
+      this._addAlert("You have already sent them a friend request", {alertType:"danger"});
       return;
     }
 
@@ -87,7 +88,10 @@ $.widget("tlms.friends_add", $.tlms.base, {
 
   _friendAdded: function (response, status) {
     this._addAlert("You have sent a friend request to " + response.username)
-    this.friends.push(response.username);
+    // this.friends.push(response.username);
+    $(this.usernameInput).val("");
     // console.log("Success")
+
+    this._callFunctionOfWidget(this.managerElement, "reset");
   },
 })

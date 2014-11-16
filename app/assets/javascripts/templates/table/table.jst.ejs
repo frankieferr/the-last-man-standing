@@ -1,0 +1,17 @@
+<table class="table table-hover table-condensed table-striped">
+  <thead>
+    <tr>
+      {{ for (var i = 0, length = columns.length; i < length; i++) { }}
+        <th>
+          {{ if (typeof(columns[i]) == "string" ) { }}
+            {{= columns[i] }}
+          {{ } }}
+        </th>
+      {{ } }}
+    </tr>
+  </thead>
+
+  <tbody style="text-align: left !important;">
+
+  </tbody>
+</table>

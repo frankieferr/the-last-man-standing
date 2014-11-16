@@ -1,0 +1,17 @@
+<tr>
+  {{ for (var i = 0, length = columns.length; i < length; i++) { }}
+    {{ if (typeof(columns[i]) == "string" ) { }}
+      <td>
+
+        {{= object[columns[i].toLowerCase()] }}
+
+      </td>
+    {{ } else { }}
+      <td style="text-align: right;">
+        {{ for (var j = 0, lengthj = columns[i].icons.length; j < lengthj; j++) { }}
+          <a class="{{=columns[i].icons[j].link_class}}"><i class="fa fa-{{= columns[i].icons[j].icon }}"></i></a>
+        {{ } }}
+      </td>
+    {{ } }}
+  {{ } }}
+</tr>

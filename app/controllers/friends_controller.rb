@@ -1,9 +1,19 @@
 class FriendsController < ApplicationController
+  before_filter :authenticate_man!
+
   def index
   end
 
-  def getAll
-    render json: current_man.all_friends
+  def getAllFriends
+    render json: current_man.friends
+  end
+
+  def getAllSentRequests
+    render json: current_man.sent_requests
+  end
+
+  def getAllReceivedRequests
+    render json: current_man.received_requests
   end
 
   def add
