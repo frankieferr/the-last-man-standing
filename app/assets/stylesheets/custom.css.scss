@@ -28,11 +28,11 @@ div.footer {
   margin: 10px auto;
 }
 
-.full_width {
+.full-width {
   width:100%;
 }
 
-.half_width {
+.half-width {
   width:50%;
 }
 
@@ -79,4 +79,22 @@ textarea.error {
 div.loading {
   min-height: 300px;
   width: 100%;
+}
+
+.inherit-height {
+  height: inherit;
+}
+
+.scroll {
+  overflow:scroll;
+}
+
+#friends[data-widget='table'] {
+  height: 335px;
+  overflow:scroll;
+}
+#received_requests[data-widget='table'],
+#sent_requests[data-widget='table'] {
+  height: 300px;
+  overflow:scroll;
 }

@@ -18,16 +18,15 @@ $.widget("frankie.table", {
     var table = $.parseHTML(JST["templates/table/table"]({columns: this.columns}));
     $(this.element).html(table);
 
-    if (evenlySpread) this.evenlySpreadRows();
-
     if(this.data.length == 0) {
       this.addNoneRow();
-      return;
+    } else {
+      for (var i = 0, length = this.data.length; i < length; i++) {
+        this.addRow(this.data[i]);
+      }
     }
 
-    for (var i = 0, length = this.data.length; i < length; i++) {
-      this.addRow(this.data[i]);
-    }
+    if (evenlySpread) this.evenlySpreadRows();
 
   },
 
@@ -39,7 +38,6 @@ $.widget("frankie.table", {
       for (var i = 0, length = this.columns[indexOfObject].icons.length; i < length; i++) {
         $(row).find(".fa.fa-" + this.columns[indexOfObject].icons[i].icon).closest("a").click(this.columns[indexOfObject].icons[i].callback)
       }
-      console.log("hello", this.columns[indexOfObject])
     }
   },
 
@@ -62,7 +60,18 @@ $.widget("frankie.table", {
 	},
 
   evenlySpreadRows: function () {
-    $(this.element).find("th").css("width", 100/this.columns.length + "%");
+    var indexOfObject = this._getIndexOfObject();
+    var x = 0;
+    var amountOfColumns = this.columns.length;
+    if(indexOfObject != -1) {
+      x = this.columns[indexOfObject].icons.length * 7;
+      amountOfColumns--;
+    }
+    $(this.element).find("th").css("width", ( 100 - x) / amountOfColumns + "%");
+    if(indexOfObject != -1) {
+      $(this.element).find("th:nth-child(" + (indexOfObject + 1) + ")").css("width", x + "%");
+
+    }
   },
 
   getRowFromElement: function (elem) {

@@ -60,19 +60,19 @@ $.widget("tlms.friends_add", $.tlms.base, {
 
     var currentFriends = this._callFunctionOfWidget(this.managerElement, "getFriends").collectProperty("username");
     if(currentFriends.indexOf(selectedUsername) != -1) {
-      this._addAlert("You are already friends", {alertType:"danger"});
+      this._addAlert("You and " + selectedUsername + " are already friends", {alertType:"danger"});
       return;
     }
 
     var currentReceivedRequests = this._callFunctionOfWidget(this.managerElement, "getReceivedRequests").collectProperty("username");
     if(currentReceivedRequests.indexOf(selectedUsername) != -1) {
-      this._addAlert("They have already sent you a friend request", {alertType:"danger"});
+      this._addAlert(selectedUsername + " has already sent you a friend request", {alertType:"danger"});
       return;
     }
 
     var currentSentRequests = this._callFunctionOfWidget(this.managerElement, "getSentRequests").collectProperty("username");
     if(currentSentRequests.indexOf(selectedUsername) != -1) {
-      this._addAlert("You have already sent them a friend request", {alertType:"danger"});
+      this._addAlert("You have already sent " + selectedUsername + " a friend request", {alertType:"danger"});
       return;
     }
 
@@ -88,10 +88,7 @@ $.widget("tlms.friends_add", $.tlms.base, {
 
   _friendAdded: function (response, status) {
     this._addAlert("You have sent a friend request to " + response.username)
-    // this.friends.push(response.username);
     $(this.usernameInput).val("");
-    // console.log("Success")
-
     this._callFunctionOfWidget(this.managerElement, "reset");
   },
 })

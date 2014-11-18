@@ -1,4 +1,10 @@
-<tr>
+<tr
+  {{ for (var i = 0, length = columns.length; i < length; i++) { }}
+    {{ if (typeof(columns[i]) == "string" ) { }}
+        data-{{=columns[i].toLowerCase()}}="{{= object[columns[i].toLowerCase()] }}"
+    {{ } }}
+  {{ } }}
+>
   {{ for (var i = 0, length = columns.length; i < length; i++) { }}
     {{ if (typeof(columns[i]) == "string" ) { }}
       <td>

@@ -7,9 +7,11 @@ TheLastManStanding::Application.routes.draw do
   get "friends/getAllReceivedRequests" => "friends#getAllReceivedRequests"
 
   post "friends/add"
-  delete "friends/remove"
+  delete "friends/delete"
   patch "friends/accept"
   delete "friends/decline"
+  delete "friends/withdraw"
+
   # Update details
   get "my_details" => "men#my_details"
   patch "men/update_details" => "men#update_details"

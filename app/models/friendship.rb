@@ -9,12 +9,20 @@ class Friendship < ActiveRecord::Base
     self.update_attributes(:accepted => true)
   end
 
-  def reject
+  def decline
     self.destroy
   end
 
   def withdraw
     self.destroy
+  end
+
+  def self.get_record(man, friend)
+    friendship = Friendship.where(:man_id => man.id, :friend_id => friend.id).first
+    return friendship if friendship
+
+    friendship = Friendship.where(:man_id => friend.id, :friend_id => man.id).first
+    return friendship
   end
 
 

@@ -8,7 +8,7 @@
         <div class="panel-body">
           <div class="row">
             <div class="col-md-10">
-              <input type="text" class="full_width" data-input="username"/>
+              <input type="text" class="full-width" data-input="username"/>
             </div>
             <div class="col-md-2">
               <button class="btn btn-primary" data-button="add">Add</button>
@@ -18,32 +18,46 @@
       </div>
     </div>
   </div>
-
-  <div data-widget="friends_list">
-    <div class="form">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          Friends
-        </div>
-        <div class="panel-body">
-          <div data-widget="table" id="friends"></div>
-
+  <div class="row" style="height: 400px">
+    <div class="col-sm-6 inherit-height">
+      <div data-widget="friends_list" class="inherit-height">
+        <div class="form inherit-height">
+          <div class="panel panel-primary inherit-height">
+            <div class="panel-heading">
+              Friends
+            </div>
+            <div class="panel-body">
+              <div data-widget="table" id="friends"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+    <div class="col-sm-6 inherit-height">
+      <div data-widget="friends_requests" class="inherit-height">
+        <div class="form inherit-height">
+          <div class="panel panel-primary inherit-height">
+            <div class="panel-heading">
+              Requests
+            </div>
+            <div class="panel-body">
+              <div role="tabpanel">
 
-  <div data-widget="friends_requests">
-    <div class="form">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          Requests
-        </div>
-        <div class="panel-body">
-          <h1>Received Requests</h1>
-          <div data-widget="table" id="received_requests"></div>
-          <h1>Sent Requests</h1>
-          <div data-widget="table" id="sent_requests"></div>
+                <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+                  <li class="active half-width"><a href="#received" data-toggle="tab">Received</a></li>
+                  <li class="half-width"><a href="#sent" data-toggle="tab">Sent</a></li>
+                </ul>
+                <div id="my-tab-content" class="tab-content">
+                  <div class="tab-pane active" id="received">
+                    <div data-widget="table" id="received_requests"></div>
+                  </div>
+                  <div class="tab-pane" id="sent">
+                    <div data-widget="table" id="sent_requests"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

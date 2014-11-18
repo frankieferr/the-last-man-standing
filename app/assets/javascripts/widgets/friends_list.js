@@ -14,9 +14,23 @@ $.widget("tlms.friends_list", $.tlms.base, {
     this._callFunctionOfWidget(this.friendsTable, "createTable");
   },
 
-  deleteFriend: function (evt) {
+  _deleteFriend: function (evt) {
     var row = this._callFunctionOfWidget(this.friendsTable, "getRowFromElement", evt.currentTarget);
-    $(row).remove();
+    $(this.element).mask("Deleting friend");
+    this._sendAjax({
+      type: "delete",
+      url: "friends/delete",
+      data: {
+        username: $(row).data("username")
+      },
+      success: "_friendDeleted",
+      complete: "_unmaskElement",
+    });
+  },
+
+  _friendDeleted: function (response) {
+    this._addAlert("You have deleted " + response.username + ". You are no longer friends.")
+    this._callFunctionOfWidget(this.managerElement, "reset");
   },
 
   _getFriendsButtonsObject: function () {
@@ -25,7 +39,7 @@ $.widget("tlms.friends_list", $.tlms.base, {
         {
           icon: "times",
           link_class: "btn-xs btn-danger",
-          callback: this.deleteFriend.bind(this)
+          callback: this._deleteFriend.bind(this)
         },
       ]
     }
