@@ -23,6 +23,9 @@ TheLastManStanding::Application.routes.draw do
   # Get all men
   get "men/all" => "men#all"
 
+  # Route to create new fallen record for man
+  post "men/fell" => "men#fell"
+
 
   # Route to get the current man
   get "men/current" => "men#current"

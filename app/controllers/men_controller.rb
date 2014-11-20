@@ -55,6 +55,18 @@ class MenController < ApplicationController
     end
   end
 
+  def fell
+    current_man.fell(params[:fallen][:message])
+    respond_to do |format|
+      format.html {
+        redirect_to "/" and return
+      }
+      format.json {
+        render json: current_man
+      }
+    end
+  end
+
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def man_params

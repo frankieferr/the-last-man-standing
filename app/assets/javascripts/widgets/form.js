@@ -54,7 +54,11 @@ $.widget("tlms.form", {
       if(!serialized[this.formAttributes[i].object]) {
         serialized[this.formAttributes[i].object] = {};
       }
-      serialized[this.formAttributes[i].object][this.formAttributes[i].attribute] = $(this.formAttributes[i].elem).find("input").val();
+      if(this.formAttributes[i].elementType == "input") {
+        serialized[this.formAttributes[i].object][this.formAttributes[i].attribute] = $(this.formAttributes[i].elem).find("input").val();
+      } else if (this.formAttributes[i].elementType == "textarea") {
+        serialized[this.formAttributes[i].object][this.formAttributes[i].attribute] = $(this.formAttributes[i].elem).find("textarea").val();
+      }
     }
 
     return serialized;

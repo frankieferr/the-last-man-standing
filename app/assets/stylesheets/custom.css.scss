@@ -36,21 +36,22 @@ div.footer {
   width:50%;
 }
 
-.form div.row.form-property {
+div.row.form-property {
   padding: 5px 0px;
 }
 
-.form div.row.form-property input[type=text],
-.form div.row.form-property input[type=email],
-.form div.row.form-property input[type=password] {
+div.row.form-property input[type=text],
+div.row.form-property input[type=email],
+div.row.form-property input[type=password],
+div.row.form-property textarea {
   width:100%;
 }
 
-.form div.row.form-property > div:nth-child(1) {
+div.row.form-property > div:nth-child(1) {
 
 }
 
-.form div.row.form-property > div:nth-child(2) {
+div.row.form-property > div:nth-child(2) {
 
 }
 
@@ -97,4 +98,15 @@ div.loading {
 #sent_requests[data-widget='table'] {
   height: 300px;
   overflow:scroll;
+}
+
+.fallen-button {
+  width: 100%;
+  text-align: center;
+  padding: 20px 0px;
+}
+
+.fallen-button > a {
+  padding:20px 50px;
+  width: 50%;
 }

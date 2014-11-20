@@ -18,7 +18,25 @@ class Man < ActiveRecord::Base
   has_many :friends_2, -> { where(friendships: {accepted: true})  }, :through => :received, :source => :man
   has_many :received_requests, -> { where(friendships: {accepted: false})  }, :through => :received, :source => :man
 
+  has_many :fallens
+
   def friends
-    friends_1 + friends_2
+    return friends_1 + friends_2
+  end
+
+  def number_of_days
+    if (number_fell == 0)
+      return (self.created_at.to_date - Date.today).to_i
+    end
+
+    return (self.fallens.last.date - Date.today).to_i
+  end
+
+  def times_fallen
+    return self.fallens.count
+  end
+
+  def fell(message = "")
+    Fallen.create(:man_id => self.id, :date => Date.today, :message => message)
   end
 end
