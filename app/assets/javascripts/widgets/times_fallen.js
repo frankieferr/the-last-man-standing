@@ -14,10 +14,19 @@ $.widget("tlms.times_fallen", $.tlms.base, {
   },
 
   _setupTimesFallenTable: function (response) {
+    this._encodeHtmlToMessage(response)
+
     this._startWidgetsInsideWidget();
     this._callFunctionOfWidget(this.timesFallenTable, "setColumns", ["Date", "Message"]);
     this._callFunctionOfWidget(this.timesFallenTable, "setData", response);
     this._callFunctionOfWidget(this.timesFallenTable, "createTable");
+
   },
+
+  _encodeHtmlToMessage: function (response) {
+    for (var i = 0, length = response.length; i < length; i++) {
+      response[i].message = response[i].message.replace(/\n/g, "<br>").replace(/\r/g, "<br>")
+    }
+  }
 
 })
