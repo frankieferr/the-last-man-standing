@@ -1,0 +1,2 @@
+module TimesFallenHelper
+end

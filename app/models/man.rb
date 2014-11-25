@@ -11,25 +11,25 @@ class Man < ActiveRecord::Base
   validates_length_of          :password, :within => Devise.password_length, :allow_blank => true
 
   has_many :sent, :class_name => "Friendship", :foreign_key => "man_id"
-  has_many :friends_1, -> { where(friendships: {accepted: true})  }, :through => :sent, :source => :friend
+  has_many :sent_friends, -> { where(friendships: {accepted: true})  }, :through => :sent, :source => :friend
   has_many :sent_requests, -> { where(friendships: {accepted: false})  }, :through => :sent, :source => :friend
 
   has_many :received, :class_name => "Friendship", :foreign_key => "friend_id"
-  has_many :friends_2, -> { where(friendships: {accepted: true})  }, :through => :received, :source => :man
+  has_many :received_friends, -> { where(friendships: {accepted: true})  }, :through => :received, :source => :man
   has_many :received_requests, -> { where(friendships: {accepted: false})  }, :through => :received, :source => :man
 
   has_many :fallens
 
   def friends
-    return friends_1 + friends_2
+    return sent_friends + received_friends
   end
 
   def number_of_days
-    if (number_fell == 0)
-      return (self.created_at.to_date - Date.today).to_i
+    if (self.times_fallen == 0)
+      return (Date.today - self.created_at.to_date).to_i
     end
 
-    return (self.fallens.last.date - Date.today).to_i
+    return (Date.today - self.fallens.last.date).to_i
   end
 
   def times_fallen

@@ -1,5 +1,11 @@
 TheLastManStanding::Application.routes.draw do
 
+  get "ladder" => "ladder#index"
+  get "ladder/info" => "ladder#info"
+
+  get "times_fallen" => "times_fallen#index"
+  get "times_fallen/all" => "times_fallen#all"
+
   get "friends" => "friends#index"
 
   get "friends/getAllFriends" => "friends#getAllFriends"

@@ -1,7 +1,7 @@
 <tr
   {{ for (var i = 0, length = columns.length; i < length; i++) { }}
     {{ if (typeof(columns[i]) == "string" ) { }}
-        data-{{=columns[i].toLowerCase()}}="{{= object[columns[i].toLowerCase()] }}"
+        data-{{=columns[i].toLowerCase().underscore()}}="{{= object[columns[i].toLowerCase().underscore()] }}"
     {{ } }}
   {{ } }}
 >
@@ -9,7 +9,7 @@
     {{ if (typeof(columns[i]) == "string" ) { }}
       <td>
 
-        {{= object[columns[i].toLowerCase()] }}
+        {{= object[columns[i].toLowerCase().underscore()] }}
 
       </td>
     {{ } else { }}
