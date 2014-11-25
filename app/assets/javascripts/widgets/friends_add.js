@@ -54,25 +54,25 @@ $.widget("tlms.friends_add", $.tlms.base, {
     var selectedUsername = $(this.usernameInput).val()
 
     if(this.allUsernames.indexOf(selectedUsername) == -1) {
-      this._addAlert("The username you selected doesn't exist", {alertType:"danger"});
+      this.addAlert("The username you selected doesn't exist", {alertType:"danger"});
       return;
     }
 
     var currentFriends = this._callFunctionOfWidget(this.managerElement, "getFriends").collectProperty("username");
     if(currentFriends.indexOf(selectedUsername) != -1) {
-      this._addAlert("You and " + selectedUsername + " are already friends", {alertType:"danger"});
+      this.addAlert("You and " + selectedUsername + " are already friends", {alertType:"danger"});
       return;
     }
 
     var currentReceivedRequests = this._callFunctionOfWidget(this.managerElement, "getReceivedRequests").collectProperty("username");
     if(currentReceivedRequests.indexOf(selectedUsername) != -1) {
-      this._addAlert(selectedUsername + " has already sent you a friend request", {alertType:"danger"});
+      this.addAlert(selectedUsername + " has already sent you a friend request", {alertType:"danger"});
       return;
     }
 
     var currentSentRequests = this._callFunctionOfWidget(this.managerElement, "getSentRequests").collectProperty("username");
     if(currentSentRequests.indexOf(selectedUsername) != -1) {
-      this._addAlert("You have already sent " + selectedUsername + " a friend request", {alertType:"danger"});
+      this.addAlert("You have already sent " + selectedUsername + " a friend request", {alertType:"danger"});
       return;
     }
 
@@ -87,7 +87,7 @@ $.widget("tlms.friends_add", $.tlms.base, {
   },
 
   _friendAdded: function (response, status) {
-    this._addAlert("You have sent a friend request to " + response.username)
+    this._callFunctionOfWidget(this.managerElement, "addAlert", "You have sent a friend request to " + response.username)
     $(this.usernameInput).val("");
     this._callFunctionOfWidget(this.managerElement, "reset");
   },

@@ -36,6 +36,17 @@ $.widget("tlms.form", {
     }
   },
 
+  clearForm: function () {
+    for (var i = 0, length = this.formAttributes.length; i < length; i++) {
+      $(this.formAttributes[i].elem).find(this.formAttributes[i].elementType).val("")
+    }
+  },
+
+  setFocus: function (index) {
+    if (index === undefined) index = 0;
+    $(this.formAttributes[index].elem).find(this.formAttributes[index].elementType).focus();
+  },
+
   setFormAttributes: function (formAttributes) {
     this.formAttributes = formAttributes;
   },
@@ -54,11 +65,9 @@ $.widget("tlms.form", {
       if(!serialized[this.formAttributes[i].object]) {
         serialized[this.formAttributes[i].object] = {};
       }
-      if(this.formAttributes[i].elementType == "input") {
-        serialized[this.formAttributes[i].object][this.formAttributes[i].attribute] = $(this.formAttributes[i].elem).find("input").val();
-      } else if (this.formAttributes[i].elementType == "textarea") {
-        serialized[this.formAttributes[i].object][this.formAttributes[i].attribute] = $(this.formAttributes[i].elem).find("textarea").val();
-      }
+
+      serialized[this.formAttributes[i].object][this.formAttributes[i].attribute] = $(this.formAttributes[i].elem).find(this.formAttributes[i].elementType).val();
+
     }
 
     return serialized;

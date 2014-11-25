@@ -9,7 +9,6 @@ $.widget("tlms.men_changePassword", $.tlms.base, {
   },
 
   _setup: function () {
-
     $(this.element).mask("Gathering information");
     this._sendAjax({
       url: "men/current",
@@ -49,7 +48,7 @@ $.widget("tlms.men_changePassword", $.tlms.base, {
 
   _submitForm: function () {
     if(!(this._callFunctionOfWidget(this.changePasswordForm, "validateForm"))) {
-      this._addAlert("Please check the red boxes. Hover over it to see the problem.", {alertType: "danger"});
+      this.addAlert("Please check the red boxes. Hover over it to see the problem.", {alertType: "danger"});
       return;
     }
 
@@ -62,6 +61,6 @@ $.widget("tlms.men_changePassword", $.tlms.base, {
   },
 
   _passwordUpdated: function (response, status) {
-    this._addAlert("Your password has been successfully updated")
+    this.addAlert("Your password has been successfully updated")
   },
 })

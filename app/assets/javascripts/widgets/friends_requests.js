@@ -47,7 +47,7 @@ $.widget("tlms.friends_requests", $.tlms.base, {
   },
 
   _friendAccepted: function (response) {
-    this._addAlert("You and " + response.username + " are now friends.")
+    this._callFunctionOfWidget(this.managerElement, "addAlert", "You and " + response.username + " are now friends.")
     this._callFunctionOfWidget(this.managerElement, "reset");
   },
 
@@ -67,7 +67,7 @@ $.widget("tlms.friends_requests", $.tlms.base, {
   },
 
   _friendDeclined: function (response) {
-    this._addAlert("You have declined " + response.username + "'s offer.")
+    this._callFunctionOfWidget(this.managerElement, "addAlert", "You have declined " + response.username + "'s offer.")
     this._callFunctionOfWidget(this.managerElement, "reset");
   },
 
@@ -105,7 +105,7 @@ $.widget("tlms.friends_requests", $.tlms.base, {
   },
 
   _friendWithdrawn: function (response) {
-    this._addAlert("You have withdrawn  your friend request to " + response.username + ".")
+    this._callFunctionOfWidget(this.managerElement, "addAlert", "You have withdrawn  your friend request to " + response.username + ".")
     this._callFunctionOfWidget(this.managerElement, "reset");
   },
 

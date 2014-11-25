@@ -1,5 +1,7 @@
 $.widget("tlms.base", $.tlms.alerts, {
 
+  successfulAjax: 0,
+
   _create: function() {
     this._super();
   },
@@ -30,7 +32,7 @@ $.widget("tlms.base", $.tlms.alerts, {
     console.log("response", response);
     console.log("status", status);
 
-    this._addAlert("The action you performed succeeded");
+    this.addAlert("The action you performed succeeded");
   },
 
   _errorCallbackFallback: function (response, status, error) {
@@ -39,7 +41,7 @@ $.widget("tlms.base", $.tlms.alerts, {
     console.log("status", status);
     console.log("error", error);
 
-    this._addAlert("Something went wrong", {alertType: "danger"});
+    this.addAlert("Something went wrong", {alertType: "danger"});
   },
 
   _completeCallbackFallback: function () {
@@ -61,5 +63,15 @@ $.widget("tlms.base", $.tlms.alerts, {
 
   _unmaskElement: function () {
     $(this.element).unmask();
-  }
+  },
+
+  _successAjax: function (response) {
+    this.successfulAjax++;
+    if(this.successfulAjax == this.totalAjax) {
+      this._unmaskElement();
+      this.successfulAjax = 0;
+      return true;
+    }
+    return false;
+  },
 })

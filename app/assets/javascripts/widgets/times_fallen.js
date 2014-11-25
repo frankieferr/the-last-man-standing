@@ -28,5 +28,4 @@ $.widget("tlms.times_fallen", $.tlms.base, {
       response[i].message = response[i].message.replace(/\n/g, "<br>").replace(/\r/g, "<br>")
     }
   }
-
 })

@@ -57,7 +57,7 @@ $.widget("tlms.men_myDetails", $.tlms.base, {
 
   _submitForm: function () {
     if(!(this._callFunctionOfWidget(this.detailsForm, "validateForm"))) {
-      this._addAlert("Please check the red boxes. Hover over it to see the problem.", {alertType: "danger"});
+      this.addAlert("Please check the red boxes. Hover over it to see the problem.", {alertType: "danger"});
       return;
     }
 
@@ -70,6 +70,6 @@ $.widget("tlms.men_myDetails", $.tlms.base, {
   },
 
   _detailsUpdated: function (response, status) {
-    this._addAlert("The details have been successfully updated")
+    this.addAlert("The details have been successfully updated")
   },
 })

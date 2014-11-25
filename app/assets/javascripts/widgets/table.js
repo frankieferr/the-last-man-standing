@@ -2,6 +2,7 @@ $.widget("frankie.table", {
 	_create: function() {
     this.columns = [];
     this.data = [];
+    this.conditionalRules = [];
 	},
 
   setColumns: function (columns) {
@@ -10,6 +11,10 @@ $.widget("frankie.table", {
 
   setData: function (data) {
     this.data = data;
+  },
+
+  setConditionalRules: function (conditionalRules) {
+    this.conditionalRules = conditionalRules;
   },
 
   createTable: function (evenlySpread) {
@@ -27,17 +32,29 @@ $.widget("frankie.table", {
     }
 
     if (evenlySpread) this.evenlySpreadRows();
-
   },
 
   addRow: function(object) {
     var row = $.parseHTML(JST["templates/table/row"]({object: object, columns: this.columns}));
     $(this.element).find("tbody").append(row);
+
+    // See if there is the object for the icons
     var indexOfObject = this._getIndexOfObject();
     if(indexOfObject != -1) {
       for (var i = 0, length = this.columns[indexOfObject].icons.length; i < length; i++) {
         $(row).find(".fa.fa-" + this.columns[indexOfObject].icons[i].icon).closest("a").click(this.columns[indexOfObject].icons[i].callback)
       }
+    }
+
+    // see if conditonal formatting is needed
+    if(this.conditionalRules.length) {
+      for (var i = 0, length = this.conditionalRules.length; i < length; i++) {
+        if($(row).data(this.conditionalRules[i].rule.attribute) == this.conditionalRules[i].rule.value) {
+          for(var property in this.conditionalRules[i].styles) {
+            $(row).css(property, this.conditionalRules[i].styles[property]);
+          }
+        }
+      };
     }
   },
 

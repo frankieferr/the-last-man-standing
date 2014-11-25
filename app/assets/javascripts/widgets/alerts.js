@@ -10,7 +10,7 @@ $.widget("tlms.alerts", {
 
   },
 
-  _addAlert: function(msg, data) {
+  addAlert: function(msg, data) {
     if(!data) data = {};
     if(!data.alertType) data.alertType = "info";
     if(!data.timeout) data.timeout = 5000;

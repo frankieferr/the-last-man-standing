@@ -1,9 +1,9 @@
 $.widget("tlms.friends_manager", $.tlms.base, {
 
+  totalAjax: 3,
+
   _create: function() {
     this._super();
-    this.successfulAjax = 0;
-    this.totalAjax = 3;
     this.friends = [];
     this.sentRequests = [];
     this.receivedRequests = [];
@@ -34,7 +34,6 @@ $.widget("tlms.friends_manager", $.tlms.base, {
   },
 
   reset: function () {
-    this.successfulAjax = 0;
     this._setup();
   },
 
@@ -54,13 +53,6 @@ $.widget("tlms.friends_manager", $.tlms.base, {
     this.sentRequests = response;
     this._successAjax();
     this._callFunctionOfWidget(this.requestsElement, "setupSentTable");
-  },
-
-  _successAjax: function (response) {
-    this.successfulAjax++;
-    if(this.successfulAjax == this.totalAjax) {
-      this._unmaskElement();
-    }
   },
 
   getFriends: function () {

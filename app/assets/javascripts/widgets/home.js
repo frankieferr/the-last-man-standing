@@ -5,10 +5,13 @@ $.widget("tlms.home", $.tlms.base, {
     this.fallenForm = $(this.element).find("[data-widget=form]")[0];
     this.submitButton = $(this.element).find("[data-button=submit]")[0];
     this.fallenModal = $(this.element).find("#fallenModal")[0];
+    this.fallenButton = $(this.element).find("[data-button=fallen]")[0];
     this._setup();
   },
 
   _setup: function () {
+    this._bind(this.fallenButton, "click", "_openModal");
+
     this._setupForm();
   },
 
@@ -28,6 +31,12 @@ $.widget("tlms.home", $.tlms.base, {
     this._callFunctionOfWidget(this.fallenForm, "createForm")
   },
 
+  _openModal: function () {
+    $(this.fallenModal).modal("show");
+    this._callFunctionOfWidget(this.fallenForm, "clearForm")
+    this._callFunctionOfWidget(this.fallenForm, "setFocus")
+  },
+
   _submitForm: function () {
     $(this.element).mask("Informing the server of your SIN!");
 
@@ -41,6 +50,6 @@ $.widget("tlms.home", $.tlms.base, {
   },
 
   _manFellSuccess: function () {
-    $(this.fallenModal).modal("hide")
+    $(this.fallenModal).modal("hide");
   }
 })

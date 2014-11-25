@@ -29,7 +29,7 @@ $.widget("tlms.friends_list", $.tlms.base, {
   },
 
   _friendDeleted: function (response) {
-    this._addAlert("You have deleted " + response.username + ". You are no longer friends.")
+    this._callFunctionOfWidget(this.managerElement, "addAlert", "You have deleted " + response.username + ". You are no longer friends.");
     this._callFunctionOfWidget(this.managerElement, "reset");
   },
 
