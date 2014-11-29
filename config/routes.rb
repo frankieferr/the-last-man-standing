@@ -2,6 +2,7 @@ TheLastManStanding::Application.routes.draw do
 
   get "ladder" => "ladder#index"
   get "ladder/info" => "ladder#info"
+  get "ladder/recently_fallen" => "ladder#recently_fallen"
 
   get "times_fallen" => "times_fallen#index"
   get "times_fallen/all" => "times_fallen#all"

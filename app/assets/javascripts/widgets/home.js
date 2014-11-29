@@ -38,7 +38,7 @@ $.widget("tlms.home", $.tlms.base, {
   },
 
   _submitForm: function () {
-    $(this.element).mask("Informing the server of your SIN!");
+    $(this.element).mask("Sending data");
 
     this._sendAjax({
       type: "post",
