@@ -45,7 +45,7 @@ $.widget("tlms.friends_add", $.tlms.base, {
 
   _addValueToReponse: function (response) {
     for (var i = 0, length = response.length; i < length; i++) {
-      response[i].value = response[i].username
+      response[i].value = response[i].username + " " + response[i].name
     }
     return response;
   },

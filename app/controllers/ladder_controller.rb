@@ -16,12 +16,14 @@ class LadderController < ApplicationController
         reply = []
 
         friend_info = {username: current_man.username,
+                       name: current_man.name,
                        times_fallen: current_man.times_fallen,
                        number_of_days: current_man.number_of_days}
         reply.push(friend_info)
 
         current_man.friends.each  do |friend|
           friend_info = {username: friend.username,
+                         name: friend.name,
                          times_fallen: friend.times_fallen,
                          number_of_days: friend.number_of_days}
           reply.push(friend_info)

@@ -24,9 +24,9 @@
         <!-- Right nav -->
         <ul class="nav navbar-nav navbar-right">
           <% if man_signed_in? %>
-          <li><a href="/friends">Friends</a></li>
           <li><a href="/ladder">Ladder</a></li>
           <li><a href="/times_fallen">Times Fallen</a></li>
+          <li><a href="/friends">Friends</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_man.username %> <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
@@ -62,10 +62,7 @@
 
   <!-- FOOTER -->
   <div class="footer">
-    <p>
-      Created by <b>Web Masters</b>
-      <img src="/assets/masters.jpeg" width="60" height="40" alt="Sorry could not display image"/>
-    </p>
+
   </div>
    <!-- END FOOTER -->
 </body>

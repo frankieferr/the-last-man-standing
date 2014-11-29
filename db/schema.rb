@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141119064851) do
+ActiveRecord::Schema.define(version: 20141129023709) do
 
   create_table "fallens", force: true do |t|
     t.integer  "man_id"
-    t.date     "date"
+    t.datetime "datetime"
     t.string   "message"
     t.datetime "created_at"
     t.datetime "updated_at"

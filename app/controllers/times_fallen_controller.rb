@@ -11,7 +11,15 @@ class TimesFallenController < ApplicationController
         redirect_to "/" and return
       }
       format.json {
-        render json: current_man.fallens.reverse
+        fallens = current_man.fallens.to_a.reverse
+        formattedFallens = []
+        fallens.each do |fallen|
+          fallen = fallen.attributes
+          fallen["date_time"] = fallen["datetime"].in_time_zone("Brisbane").strftime("%d/%m/%Y at %I:%M%p")
+          formattedFallens.push(fallen)
+        end
+
+        render json: formattedFallens
       }
     end
   end

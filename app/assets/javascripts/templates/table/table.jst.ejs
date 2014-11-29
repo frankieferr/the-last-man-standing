@@ -4,7 +4,7 @@
       {{ for (var i = 0, length = columns.length; i < length; i++) { }}
         <th>
           {{ if (typeof(columns[i]) == "string" ) { }}
-            {{= columns[i] }}
+            {{= columns[i].replace("_", " ") }}
           {{ } }}
         </th>
       {{ } }}

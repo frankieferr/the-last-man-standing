@@ -17,7 +17,7 @@ $.widget("tlms.times_fallen", $.tlms.base, {
     this._encodeHtmlToMessage(response)
 
     this._startWidgetsInsideWidget();
-    this._callFunctionOfWidget(this.timesFallenTable, "setColumns", ["Date", "Message"]);
+    this._callFunctionOfWidget(this.timesFallenTable, "setColumns", ["Date_Time", "Message"]);
     this._callFunctionOfWidget(this.timesFallenTable, "setData", response);
     this._callFunctionOfWidget(this.timesFallenTable, "createTable");
 

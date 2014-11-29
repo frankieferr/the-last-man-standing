@@ -29,7 +29,7 @@ class Man < ActiveRecord::Base
       return (Date.today - self.created_at.to_date).to_i
     end
 
-    return (Date.today - self.fallens.last.date).to_i
+    return (Date.today - self.fallens.last.datetime.to_date).to_i
   end
 
   def times_fallen
@@ -37,6 +37,6 @@ class Man < ActiveRecord::Base
   end
 
   def fell(message = "")
-    Fallen.create(:man_id => self.id, :date => Date.today, :message => message)
+    Fallen.create(:man_id => self.id, :datetime => DateTime.now, :message => message)
   end
 end
