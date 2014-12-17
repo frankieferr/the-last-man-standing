@@ -28,15 +28,22 @@ class Man < ActiveRecord::Base
     if (self.times_fallen == 0)
       return (Date.today - self.created_at.to_date).to_i
     end
+    number_of_days = (Date.today - self.sorted_fallens.first.datetime.to_date).to_i
 
-    return (Date.today - self.fallens.last.datetime.to_date).to_i
+    return 0 if number_of_days < 0
+
+    return number_of_days
+  end
+
+  def sorted_fallens
+    self.fallens.sort! { |a, b| b[:datetime] <=> a[:datetime] }
   end
 
   def times_fallen
     return self.fallens.count
   end
 
-  def fell(message = "")
-    Fallen.create(:man_id => self.id, :datetime => DateTime.now, :message => message)
+  def fell(message = "", datetime = DateTime.now)
+    Fallen.create(:man_id => self.id, :datetime => datetime, :message => message)
   end
 end

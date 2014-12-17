@@ -28,6 +28,7 @@ GEM
     arel (4.0.2)
     awesome_print (1.2.0)
     bcrypt-ruby (3.1.2)
+    bootstrap-datetimepicker-rails (0.0.11)
     builder (3.1.4)
     coderay (1.1.0)
     coffee-rails (4.0.1)
@@ -135,6 +136,7 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  bootstrap-datetimepicker-rails
   coffee-rails (~> 4.0.0)
   devise
   ejs

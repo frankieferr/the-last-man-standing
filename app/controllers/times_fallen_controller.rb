@@ -11,7 +11,7 @@ class TimesFallenController < ApplicationController
         redirect_to "/" and return
       }
       format.json {
-        fallens = current_man.fallens.to_a.reverse
+        fallens = current_man.sorted_fallens
         formattedFallens = []
         fallens.each do |fallen|
           fallen = fallen.attributes

@@ -17,13 +17,23 @@ class Friendship < ActiveRecord::Base
     self.destroy
   end
 
-  def self.get_record(man, friend)
-    friendship = Friendship.where(:man_id => man.id, :friend_id => friend.id).first
+  def self.get_friendship(man, friend)
+    friendship = Friendship.where(:man_id => man.id, :friend_id => friend.id, :accepted => true).first
     return friendship if friendship
 
-    friendship = Friendship.where(:man_id => friend.id, :friend_id => man.id).first
+    friendship = Friendship.where(:man_id => friend.id, :friend_id => man.id, :accepted => true).first
     return friendship
   end
 
+  def self.get_request(man, friend)
+    friendship = Friendship.where(:man_id => man.id, :friend_id => friend.id, :accepted => false).first
+    return friendship
+  end
+
+  def self.exists(man, friend)
+    return true if Friendship.where(:man_id => man.id, :friend_id => friend.id).count > 0
+    return true if Friendship.where(:man_id => friend.id, :friend_id => man.id).count > 0
+    return false
+  end
 
 end

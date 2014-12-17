@@ -23,7 +23,7 @@ $.widget("tlms.ladder", $.tlms.base, {
 
   _setupLadderTable: function (response) {
     this._startWidgetsInsideWidget();
-    this._callFunctionOfWidget(this.ladderTable, "setColumns", ["Username", "Name", "Times Fallen", "Number of Days"]);
+    this._callFunctionOfWidget(this.ladderTable, "setColumns", ["Username", "Name", "Number of Days"]);
     this._callFunctionOfWidget(this.ladderTable, "setData", this.ladderInfo);
     this._callFunctionOfWidget(this.ladderTable, "setConditionalRules", this._getConditionalRules());
     this._callFunctionOfWidget(this.ladderTable, "createTable");

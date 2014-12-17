@@ -35,15 +35,31 @@ $.widget("tlms.home", $.tlms.base, {
     $(this.fallenModal).modal("show");
     this._callFunctionOfWidget(this.fallenForm, "clearForm")
     this._callFunctionOfWidget(this.fallenForm, "setFocus")
+
+    $('#datetimepicker').datetimepicker({
+      weekStart: 1,
+      todayBtn:  1,
+      autoclose: 1,
+      todayHighlight: 1,
+      startView: 2,
+      showMeridian: 1,
+    });
+    $('#datetimepicker').datetimepicker("setDate", new Date(Date.now()))
   },
 
   _submitForm: function () {
     $(this.element).mask("Sending data");
-
+    var data = this._callFunctionOfWidget(this.fallenForm, "serializeForm")
+    date = $('#datetimepicker').datetimepicker("getDate")
+    // can't choose a date in the future. Allow them but send date as now
+    if(date > new Date(Date.now())) {
+      date = new Date(Date.now())
+    }
+    data.fallen["datetime"] = date
     this._sendAjax({
       type: "post",
       url: "men/fell",
-      data: this._callFunctionOfWidget(this.fallenForm, "serializeForm"),
+      data: data,
       success: "_manFellSuccess",
       complete: "_unmaskElement",
     });
