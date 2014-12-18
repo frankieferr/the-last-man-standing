@@ -1,11 +1,11 @@
-$.widget("tlms.home", $.tlms.base, {
+$.widget("tlms.fallen", $.tlms.base, {
 
   _create: function() {
     this._super();
     this.fallenForm = $(this.element).find("[data-widget=form]")[0];
     this.submitButton = $(this.element).find("[data-button=submit]")[0];
     this.fallenModal = $(this.element).find("#fallenModal")[0];
-    this.fallenButton = $(this.element).find("[data-button=fallen]")[0];
+    this.fallenButton = $("[data-top-link=i-have-fallen]")[0];
     this._setup();
   },
 
@@ -67,5 +67,8 @@ $.widget("tlms.home", $.tlms.base, {
 
   _manFellSuccess: function () {
     $(this.fallenModal).modal("hide");
+    if(location.pathname == "/times_fallen") {
+      location.reload();
+    }
   }
 })
