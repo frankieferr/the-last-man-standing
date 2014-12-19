@@ -43,7 +43,14 @@ class Man < ActiveRecord::Base
     return self.fallens.count
   end
 
-  def fell(message = "", datetime = DateTime.now)
-    Fallen.create(:man_id => self.id, :datetime => datetime, :message => message)
+  def fell(fallen)
+    Fallen.create(:man_id => self.id,
+                  :datetime => fallen[:datetime] || Date.now,
+                  :message => fallen[:message] || "",
+                  :masturbation => fallen[:masturbation] || false,
+                  :pornography => fallen[:pornography] || false,
+                  :sexual_contact => fallen[:sexual_contact] || false,
+                  :other => fallen[:other],
+                  )
   end
 end

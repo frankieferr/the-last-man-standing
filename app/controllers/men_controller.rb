@@ -56,7 +56,7 @@ class MenController < ApplicationController
   end
 
   def fell
-    current_man.fell(params[:fallen][:message], DateTime.parse(params[:fallen][:datetime]))
+    current_man.fell(params[:fallen])
     respond_to do |format|
       format.html {
         redirect_to "/" and return

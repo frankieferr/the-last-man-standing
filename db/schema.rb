@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141129023709) do
+ActiveRecord::Schema.define(version: 20141218101414) do
 
   create_table "fallens", force: true do |t|
     t.integer  "man_id"
@@ -19,6 +19,10 @@ ActiveRecord::Schema.define(version: 20141129023709) do
     t.string   "message"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "masturbation",   default: false
+    t.boolean  "pornography",    default: false
+    t.boolean  "sexual_contact", default: false
+    t.string   "other"
   end
 
   create_table "friendships", force: true do |t|
