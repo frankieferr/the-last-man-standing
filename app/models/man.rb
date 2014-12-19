@@ -20,6 +20,8 @@ class Man < ActiveRecord::Base
 
   has_many :fallens
 
+  has_many :posts
+
   def friends
     return sent_friends + received_friends
   end
@@ -41,6 +43,21 @@ class Man < ActiveRecord::Base
 
   def times_fallen
     return self.fallens.count
+  end
+
+  def posts_and_comments
+    posts_and_comments = []
+    self.posts.each do |post|
+      postHash = post.attributes
+      postHash["message"] = postHash["message"].gsub("\n", "<br>").html_safe
+      postHash["date_time"] = postHash["created_at"].in_time_zone("Brisbane").strftime("%d/%m/%Y at %I:%M%p")
+      postHash["man_username"] = post.man.username
+      postHash["man_name"] = post.man.name
+      postHash["comments"] = post.commentsHashes
+      posts_and_comments.push(postHash)
+    end
+
+    return posts_and_comments
   end
 
   def fell(fallen)

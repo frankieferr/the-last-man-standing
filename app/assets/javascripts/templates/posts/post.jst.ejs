@@ -1,0 +1,44 @@
+
+
+<div style="width:100%; margin-bottom: 5px;">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <div class="row">
+        <div align="left" class="col-xs-6">
+          <i class='fa fa-user'></i>&nbsp;<b>{{=post.man_username}}</b>
+        </div>
+        <div align="right" class="col-xs-6">
+          {{=post.date_time}}
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      {{=post.message}}
+      <div style="margin: 10px 5px 0px 5px;">
+        {{ for (var i = 0, length = post.comments.length; i < length; i++) { }}
+          <div class="row" style="border: 1px solid lightblue; padding: 10px; margin: 5px 0px;">
+            <div align="left" class="col-xs-2">
+              <i class='fa fa-user'></i> &nbsp <b> {{=post.comments[i].man_username}} </b>
+            </div>
+            <div align="left" class="col-xs-7">
+              {{=post.comments[i].message}}
+            </div>
+            <div align="left" class="col-xs-3">
+              {{=post.comments[i].date_time}}
+            </div>
+          </div>
+        {{ } }}
+        <div class="row" style="border: 1px solid lightblue; padding: 10px; margin: 5px 0px;">
+          <div align="left" class="col-xs-2">
+            <i class='fa fa-user'></i> &nbsp <b> {{=current_man}} </b> <br>
+          </div>
+          <div align="left" class="col-xs-7">
+            <textarea style="width:100%; min-height:40px" placeholder="Comment on this post"></textarea>
+          </div>
+          <div class="col-md-3">
+            <button class="btn btn-sm btn-primary" data-button="add_comment" data-post-id="{{=post.id}}">Add Comment</button>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

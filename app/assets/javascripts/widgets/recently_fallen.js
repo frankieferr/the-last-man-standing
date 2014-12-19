@@ -31,7 +31,6 @@ $.widget("tlms.recently_fallen", $.tlms.base, {
 
   _storeRecentlyFallenInfo: function (response) {
     this.recentlyFallenInfo = response;
-    console.log(response)
     if(this._successAjax()) {
       this._setupRecentlyFallenTable();
     }

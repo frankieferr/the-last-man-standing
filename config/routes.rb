@@ -1,5 +1,10 @@
 TheLastManStanding::Application.routes.draw do
 
+  get "posts" => "posts#index"
+  get "posts/all" => "posts#all"
+  post "posts/add" => "posts#add"
+  post "posts/addComment" => "posts#addComment"
+
   get "ladder" => "ladder#index"
   get "ladder/info" => "ladder#info"
   get "ladder/recently_fallen" => "ladder#recently_fallen"

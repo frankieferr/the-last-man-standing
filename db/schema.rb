@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141218101414) do
+ActiveRecord::Schema.define(version: 20141219065127) do
+
+  create_table "comments", force: true do |t|
+    t.integer  "man_id"
+    t.integer  "post_id"
+    t.string   "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "fallens", force: true do |t|
     t.integer  "man_id"
@@ -49,5 +57,12 @@ ActiveRecord::Schema.define(version: 20141218101414) do
   end
 
   add_index "men", ["username"], name: "index_men_on_username", unique: true
+
+  create_table "posts", force: true do |t|
+    t.integer  "man_id"
+    t.string   "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
