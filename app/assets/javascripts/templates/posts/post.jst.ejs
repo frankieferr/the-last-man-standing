@@ -14,7 +14,10 @@
     </div>
     <div class="panel-body">
       {{=post.message}}
-      <div style="margin: 10px 5px 0px 5px;">
+      <div align="right" data-area="comments_link">
+        <a data-shown="false">Show Comments</a>
+      <div>
+      <div class="comments" style="margin: 10px 5px 0px 5px; display:none;">
         {{ for (var i = 0, length = post.comments.length; i < length; i++) { }}
           <div class="row" style="border: 1px solid lightblue; padding: 10px; margin: 5px 0px;">
             <div align="left" class="col-xs-2">

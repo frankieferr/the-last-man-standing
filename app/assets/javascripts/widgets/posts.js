@@ -29,6 +29,7 @@ $.widget("tlms.posts", $.tlms.base, {
       $(this.postsArea).append(post);
       this._bind($(post).find("button[data-button=add_comment]"), "click", "_addComment");
       this._bind($(post).find("textarea"), "keypress", "_keyPressTextArea");
+      this._bind($(post).find("[data-area=comments_link]>a"), "click", "_toggleComments");
     }
   },
 
@@ -79,5 +80,18 @@ $.widget("tlms.posts", $.tlms.base, {
 
   _keyPressTextArea: function (evt) {
     $(evt.currentTarget).height(0).height($(evt.currentTarget)[0].scrollHeight)
+  },
+
+  _toggleComments: function (evt) {
+    if($(evt.currentTarget).data("shown") == "true") {
+      $(evt.currentTarget).closest("div.panel-body").find("div.comments").hide();
+      $(evt.currentTarget).data("shown", "false");
+      $(evt.currentTarget).html("Show Comments");
+    } else {
+      $(evt.currentTarget).closest("div.panel-body").find("div.comments").show();
+      $(evt.currentTarget).data("shown", "true");
+      $(evt.currentTarget).html("Hide Comments");
+    }
+
   }
 })
