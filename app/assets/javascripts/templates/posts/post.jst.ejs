@@ -15,7 +15,7 @@
     <div class="panel-body">
       {{=post.message}}
       <div align="right" data-area="comments_link">
-        <a data-shown="false">Show Comments</a>
+        <a data-shown="false"><i>Show Comments</i>&nbsp;<i>({{=post.comments.length}})</i></a>
       <div>
       <div class="comments" style="margin: 10px 5px 0px 5px; display:none;">
         {{ for (var i = 0, length = post.comments.length; i < length; i++) { }}

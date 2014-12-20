@@ -86,11 +86,11 @@ $.widget("tlms.posts", $.tlms.base, {
     if($(evt.currentTarget).data("shown") == "true") {
       $(evt.currentTarget).closest("div.panel-body").find("div.comments").hide();
       $(evt.currentTarget).data("shown", "false");
-      $(evt.currentTarget).html("Show Comments");
+      $(evt.currentTarget).find("i:nth-child(1)").html("Show Comments");
     } else {
       $(evt.currentTarget).closest("div.panel-body").find("div.comments").show();
       $(evt.currentTarget).data("shown", "true");
-      $(evt.currentTarget).html("Hide Comments");
+      $(evt.currentTarget).find("i:nth-child(1)").html("Hide Comments");
     }
 
   }
