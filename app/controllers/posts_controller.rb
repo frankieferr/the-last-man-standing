@@ -22,8 +22,8 @@ class PostsController < ApplicationController
             posts_and_comments.push(post_and_comments)
           end
         end
-
-        posts_and_comments.sort! { |a, b| b["created_at"] <=> a["created_at"] }
+        # Order it in ascending order because in JS we render it prepended
+        posts_and_comments.sort! { |a, b| a["created_at"] <=> b["created_at"] }
         reply["posts_and_comments"] = posts_and_comments
         reply["current_man"] = current_man.username
         render json: reply
@@ -32,12 +32,12 @@ class PostsController < ApplicationController
   end
 
   def add
-    Post.create(:man_id => current_man.id, :message => params[:message])
-    render json: true
+    post = Post.create(:man_id => current_man.id, :message => params[:message])
+    render json: post.info
   end
 
   def addComment
-    Comment.create(:man_id => current_man.id, :post_id => params[:post_id], :message => params[:message])
-    render json: true
+    comment = Comment.create(:man_id => current_man.id, :post_id => params[:post_id], :message => params[:message])
+    render json: comment.info
   end
 end

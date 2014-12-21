@@ -23,14 +23,26 @@ $.widget("tlms.posts", $.tlms.base, {
   _setupPostData: function (response) {
     this._bind(this.postButton, "click", "_submitPost");
     this._bind(this.postTextArea, "keypress", "_keyPressTextArea");
-
+    this.current_man = response.current_man;
     for (var i = 0, length = response.posts_and_comments.length; i < length; i++) {
-      var post = $.parseHTML(JST["templates/posts/post"]({post: response.posts_and_comments[i], current_man: response.current_man}));
-      $(this.postsArea).append(post);
-      this._bind($(post).find("button[data-button=add_comment]"), "click", "_addComment");
-      this._bind($(post).find("textarea"), "keypress", "_keyPressTextArea");
-      this._bind($(post).find("[data-area=comments_link]>a"), "click", "_toggleComments");
+      this._addPostToPage(response.posts_and_comments[i]);
     }
+  },
+
+  _addPostToPage: function (postInfo) {
+    var post = $.parseHTML(JST["templates/posts/post"]({post: postInfo, current_man: this.current_man}));
+    $(this.postsArea).prepend(post);
+    for (var i = 0, length = postInfo.comments.length; i < length; i++) {
+      this._addCommentToPage(post, postInfo.comments[i])
+    }
+    this._bind($(post).find("button[data-button=add_comment]"), "click", "_addComment");
+    this._bind($(post).find("textarea"), "keypress", "_keyPressTextArea");
+    this._bind($(post).find("[data-area=comments_link]>a"), "click", "_toggleComments");
+  },
+
+  _addCommentToPage: function (postHtml, commentInfo) {
+    var comment = $.parseHTML(JST["templates/posts/comment"](commentInfo));
+    $(postHtml).find(".persistedComments").append(comment);
   },
 
   _submitPost: function () {
@@ -47,12 +59,14 @@ $.widget("tlms.posts", $.tlms.base, {
         message: message
       },
       success: "_postPosted",
+      complete: "_unmaskElement"
     });
   },
 
-  _postPosted: function () {
+  _postPosted: function (response) {
     $(this.postTextArea).val("")
-    location.reload();
+    this._addPostToPage(response);
+
   },
 
   _addComment: function (evt) {
@@ -71,11 +85,16 @@ $.widget("tlms.posts", $.tlms.base, {
         post_id: postId
       },
       success: "_commentAdded",
+      complete: "_unmaskElement"
     });
   },
 
-  _commentAdded: function () {
-    location.reload();
+  _commentAdded: function (response) {
+    var postHtml = $(this.element).find("div[data-post-id=" + response.post_id + "]")[0];
+    this._addCommentToPage(postHtml, response);
+    $(postHtml).find(".newComment textarea").val("");
+    var count = parseInt($(postHtml).find(".comment_count").html());
+    $(postHtml).find(".comment_count").html(count + 1)
   },
 
   _keyPressTextArea: function (evt) {
