@@ -15,10 +15,10 @@
       <div align="right" data-area="comments_link">
         <a data-shown="false"><i>Show Comments</i>&nbsp;<i>(</i><i class="comment_count">{{=post.comments.length}}</i><i>)</i></a>
       </div>
-      <div class="comments" style="margin: 10px 5px 0px 5px; display:none;">
-        <div class="persistedComments"></div>
-        <div class="newComment">
-          <div class="row" style="border: 1px solid lightblue; padding: 10px; margin: 5px 0px;">
+      <div class="comments">
+        <div data-area="persistedComments"></div>
+        <div data-area="newComment">
+          <div class="row">
             <div align="left" class="col-xs-2">
               <i class='fa fa-user'></i> &nbsp <b> {{=current_man}} </b> <br>
             </div>

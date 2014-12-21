@@ -120,3 +120,14 @@ input[disabled] {
   color: #333;
   border: 2px solid #CCC
 }
+
+.comments {
+  margin: 10px 5px 0px 5px;
+  display:none;
+}
+
+.comments > div > div.row {
+  border: 1px solid lightblue;
+  padding: 10px;
+  margin: 5px 0px;
+}

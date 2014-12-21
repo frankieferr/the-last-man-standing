@@ -42,7 +42,7 @@ $.widget("tlms.posts", $.tlms.base, {
 
   _addCommentToPage: function (postHtml, commentInfo) {
     var comment = $.parseHTML(JST["templates/posts/comment"](commentInfo));
-    $(postHtml).find(".persistedComments").append(comment);
+    $(postHtml).find("[data-area=persistedComments]").append(comment);
   },
 
   _submitPost: function () {
@@ -92,7 +92,7 @@ $.widget("tlms.posts", $.tlms.base, {
   _commentAdded: function (response) {
     var postHtml = $(this.element).find("div[data-post-id=" + response.post_id + "]")[0];
     this._addCommentToPage(postHtml, response);
-    $(postHtml).find(".newComment textarea").val("");
+    $(postHtml).find("[data-area=newComment] textarea").val("");
     var count = parseInt($(postHtml).find(".comment_count").html());
     $(postHtml).find(".comment_count").html(count + 1)
   },
