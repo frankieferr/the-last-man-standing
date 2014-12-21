@@ -22,7 +22,8 @@ $.widget("tlms.posts", $.tlms.base, {
 
   _setupPostData: function (response) {
     this._bind(this.postButton, "click", "_submitPost");
-    this._bind(this.postTextArea, "keypress", "_keyPressTextArea");
+    this._bind(this.postTextArea, "keypress", "_adjustTextareaHeight");
+    this._bind(this.postTextArea, "keypress", "_submitPostOnEnter");
     this.current_man = response.current_man;
     for (var i = 0, length = response.posts_and_comments.length; i < length; i++) {
       this._addPostToPage(response.posts_and_comments[i]);
@@ -36,13 +37,20 @@ $.widget("tlms.posts", $.tlms.base, {
       this._addCommentToPage(post, postInfo.comments[i])
     }
     this._bind($(post).find("button[data-button=add_comment]"), "click", "_addComment");
-    this._bind($(post).find("textarea"), "keypress", "_keyPressTextArea");
+    this._bind($(post).find("textarea"), "keypress", "_adjustTextareaHeight");
+    this._bind($(post).find("textarea"), "keypress", "_addCommentOnEnter");
     this._bind($(post).find("[data-area=comments_link]>a"), "click", "_toggleComments");
   },
 
   _addCommentToPage: function (postHtml, commentInfo) {
     var comment = $.parseHTML(JST["templates/posts/comment"](commentInfo));
     $(postHtml).find("[data-area=persistedComments]").append(comment);
+  },
+
+  _submitPostOnEnter: function (evt) {
+    if (evt.keyCode == 13 && !evt.shiftKey) {
+      this._submitPost();
+    }
   },
 
   _submitPost: function () {
@@ -66,12 +74,17 @@ $.widget("tlms.posts", $.tlms.base, {
   _postPosted: function (response) {
     $(this.postTextArea).val("")
     this._addPostToPage(response);
+  },
 
+  _addCommentOnEnter: function (evt) {
+    if (evt.keyCode == 13 && !evt.shiftKey) {
+      this._addComment(evt);
+    }
   },
 
   _addComment: function (evt) {
     var message = $(evt.currentTarget).closest("div.row").find("textarea").val();
-    var postId = $(evt.currentTarget).data("post-id")
+    var postId = $(evt.currentTarget).closest("div.row").find("button").data("post-id")
     if(message == "" || postId == "") {
       return;
     }
@@ -97,7 +110,7 @@ $.widget("tlms.posts", $.tlms.base, {
     $(postHtml).find(".comment_count").html(count + 1)
   },
 
-  _keyPressTextArea: function (evt) {
+  _adjustTextareaHeight: function (evt) {
     $(evt.currentTarget).height(0).height($(evt.currentTarget)[0].scrollHeight)
   },
 
