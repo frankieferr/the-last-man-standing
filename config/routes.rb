@@ -1,46 +1,48 @@
 TheLastManStanding::Application.routes.draw do
 
-  get "posts" => "posts#index"
-  get "posts/all" => "posts#all"
-  post "posts/add" => "posts#add"
-  post "posts/addComment" => "posts#addComment"
+  get "/posts" => "posts#index"
+  get "/posts/:id/show" => "posts#show"
+  get "/posts/all" => "posts#all"
+  post "/posts/add" => "posts#add"
+  post "/posts/addComment" => "posts#addComment"
+  get "/posts/:id/info" => "posts#info"
 
-  get "ladder" => "ladder#index"
-  get "ladder/info" => "ladder#info"
-  get "ladder/recently_fallen" => "ladder#recently_fallen"
+  get "/ladder" => "ladder#index"
+  get "/ladder/info" => "ladder#info"
+  get "/ladder/recently_fallen" => "ladder#recently_fallen"
 
-  get "times_fallen" => "times_fallen#index"
-  get "times_fallen/all" => "times_fallen#all"
+  get "/times_fallen" => "times_fallen#index"
+  get "/times_fallen/all" => "times_fallen#all"
 
-  get "friends" => "friends#index"
+  get "/friends" => "friends#index"
 
-  get "friends/getAllFriends" => "friends#getAllFriends"
-  get "friends/getAllSentRequests" => "friends#getAllSentRequests"
-  get "friends/getAllReceivedRequests" => "friends#getAllReceivedRequests"
+  get "/friends/getAllFriends" => "friends#getAllFriends"
+  get "/friends/getAllSentRequests" => "friends#getAllSentRequests"
+  get "/friends/getAllReceivedRequests" => "friends#getAllReceivedRequests"
 
-  post "friends/add"
-  delete "friends/delete"
-  patch "friends/accept"
-  delete "friends/decline"
-  delete "friends/withdraw"
+  post "/friends/add"
+  delete "/friends/delete"
+  patch "/friends/accept"
+  delete "/friends/decline"
+  delete "/friends/withdraw"
 
   # Update details
-  get "my_details" => "men#my_details"
-  patch "men/update_details" => "men#update_details"
+  get "/my_details" => "men#my_details"
+  patch "/men/update_details" => "men#update_details"
 
   # Change password
-  get "change_password" => "men#change_password"
-  patch "men/update_password" => "men#update_password"
+  get "/change_password" => "men#change_password"
+  patch "/men/update_password" => "men#update_password"
 
   # Get all men
-  get "men/all" => "men#all"
+  get "/men/all" => "men#all"
 
   # Route to create new fallen record for man
-  post "men/fell" => "men#fell"
+  post "/men/fell" => "men#fell"
 
 
   # Route to get the current man
-  get "men/current" => "men#current"
+  get "/men/current" => "men#current"
 
 
   # DEVISE

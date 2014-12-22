@@ -11,10 +11,11 @@ $.widget("tlms.posts", $.tlms.base, {
 
   _setup: function () {
     $(this.postTextArea).val("");
-
+    var getUrl = $(this.element).data("get-url");
     $(this.element).mask("Gathering information");
+
     this._sendAjax({
-      url: "posts/all",
+      url: getUrl,
       success: "_setupPostData",
       complete: "_unmaskElement"
     });
@@ -62,7 +63,7 @@ $.widget("tlms.posts", $.tlms.base, {
     $(this.addPostArea).mask("Posting");
     this._sendAjax({
       type: "post",
-      url: "posts/add",
+      url: "/posts/add",
       data: {
         message: message
       },
@@ -92,7 +93,7 @@ $.widget("tlms.posts", $.tlms.base, {
     $(evt.currentTarget).closest("div.row").mask("Posting");
     this._sendAjax({
       type: "post",
-      url: "posts/addComment",
+      url: "/posts/addComment",
       data: {
         message: message,
         post_id: postId

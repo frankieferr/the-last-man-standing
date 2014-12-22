@@ -19,7 +19,7 @@ $.widget("tlms.friends_list", $.tlms.base, {
     $(this.element).mask("Deleting friend");
     this._sendAjax({
       type: "delete",
-      url: "friends/delete",
+      url: "/friends/delete",
       data: {
         username: $(row).data("username")
       },

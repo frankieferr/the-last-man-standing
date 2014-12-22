@@ -77,7 +77,7 @@ $.widget("tlms.fallen", $.tlms.base, {
     }
     this._sendAjax({
       type: "post",
-      url: "men/fell",
+      url: "/men/fell",
       data: data,
       success: "_manFellSuccess",
       complete: "_unmaskElement",

@@ -11,12 +11,12 @@ $.widget("tlms.recently_fallen", $.tlms.base, {
   _setup: function () {
     $(this.element).mask("Gathering information");
     this._sendAjax({
-      url: "ladder/recently_fallen",
+      url: "/ladder/recently_fallen",
       success: "_storeRecentlyFallenInfo"
     });
 
     this._sendAjax({
-      url: "men/current",
+      url: "/men/current",
       success: "_storeCurrentMan",
     });
   },

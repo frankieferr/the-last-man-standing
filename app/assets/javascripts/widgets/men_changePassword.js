@@ -11,7 +11,7 @@ $.widget("tlms.men_changePassword", $.tlms.base, {
   _setup: function () {
     $(this.element).mask("Gathering information");
     this._sendAjax({
-      url: "men/current",
+      url: "/men/current",
       success: "_setupForm",
       complete: "_unmaskElement",
     });
@@ -54,7 +54,7 @@ $.widget("tlms.men_changePassword", $.tlms.base, {
 
     this._sendAjax({
       type: "patch",
-      url: "men/update_password",
+      url: "/men/update_password",
       data: this._callFunctionOfWidget(this.changePasswordForm, "serializeForm"),
       success: "_passwordUpdated",
     });

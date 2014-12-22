@@ -13,7 +13,7 @@ $.widget("tlms.friends_add", $.tlms.base, {
   _setup: function () {
     $(this.element).mask("Gathering information");
     this._sendAjax({
-      url: "men/all",
+      url: "/men/all",
       success: "_setupAutocomplete",
       complete: "_unmaskElement",
     });
@@ -78,7 +78,7 @@ $.widget("tlms.friends_add", $.tlms.base, {
 
     this._sendAjax({
       type: "post",
-      url: "friends/add",
+      url: "/friends/add",
       data: {
         username: selectedUsername
       },

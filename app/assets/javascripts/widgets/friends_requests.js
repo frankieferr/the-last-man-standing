@@ -37,7 +37,7 @@ $.widget("tlms.friends_requests", $.tlms.base, {
     $(this.element).mask("Accepting friend");
     this._sendAjax({
       type: "patch",
-      url: "friends/accept",
+      url: "/friends/accept",
       data: {
         username: $(row).data("username")
       },
@@ -57,7 +57,7 @@ $.widget("tlms.friends_requests", $.tlms.base, {
     $(this.element).mask("Declining friend");
     this._sendAjax({
       type: "delete",
-      url: "friends/decline",
+      url: "/friends/decline",
       data: {
         username: $(row).data("username")
       },
@@ -95,7 +95,7 @@ $.widget("tlms.friends_requests", $.tlms.base, {
     $(this.element).mask("Withdrawing friend");
     this._sendAjax({
       type: "delete",
-      url: "friends/withdraw",
+      url: "/friends/withdraw",
       data: {
         username: $(row).data("username")
       },

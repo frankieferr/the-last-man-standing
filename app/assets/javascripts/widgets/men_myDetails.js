@@ -12,7 +12,7 @@ $.widget("tlms.men_myDetails", $.tlms.base, {
 
     $(this.element).mask("Gathering information");
     this._sendAjax({
-      url: "men/current",
+      url: "/men/current",
       success: "_setupForm",
       complete: "_unmaskElement",
     });
@@ -63,7 +63,7 @@ $.widget("tlms.men_myDetails", $.tlms.base, {
 
     this._sendAjax({
       type: "patch",
-      url: "men/update_details",
+      url: "/men/update_details",
       data: this._callFunctionOfWidget(this.detailsForm, "serializeForm"),
       success: "_detailsUpdated",
     });

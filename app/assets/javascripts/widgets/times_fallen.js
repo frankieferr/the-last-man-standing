@@ -9,7 +9,7 @@ $.widget("tlms.times_fallen", $.tlms.base, {
   _setup: function () {
     $(this.element).mask("Gathering information");
     this._sendAjax({
-      url: "times_fallen/all",
+      url: "/times_fallen/all",
       success: "_setupTimesFallenTable",
       complete: "_unmaskElement"
     });

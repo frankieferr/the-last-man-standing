@@ -18,17 +18,17 @@ $.widget("tlms.friends_manager", $.tlms.base, {
     $(this.element).mask("Gathering information");
 
     this._sendAjax({
-      url: "friends/getAllFriends",
+      url: "/friends/getAllFriends",
       success: "_storeFriends"
     });
 
     this._sendAjax({
-      url: "friends/getAllReceivedRequests",
+      url: "/friends/getAllReceivedRequests",
       success: "_storeReceivedRequests"
     });
 
     this._sendAjax({
-      url: "friends/getAllSentRequests",
+      url: "/friends/getAllSentRequests",
       success: "_storeSentRequests"
     });
   },
