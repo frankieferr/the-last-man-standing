@@ -6,16 +6,20 @@ $.widget("tlms.posts", $.tlms.base, {
     this.postTextArea = $(this.element).find("textarea[data-textarea='post']")[0];
     this.postsArea = $(this.element).find("[data-area=posts]");
     this.addPostArea = $(this.element).find("[data-area=add_post]");
+
+    this.getUrl = $(this.element).data("get-url");
+    this.showDefault = $(this.element).data("show-default");
+
     this._setup();
   },
 
   _setup: function () {
     $(this.postTextArea).val("");
-    var getUrl = $(this.element).data("get-url");
+
     $(this.element).mask("Gathering information");
 
     this._sendAjax({
-      url: getUrl,
+      url: this.getUrl,
       success: "_setupPostData",
       complete: "_unmaskElement"
     });
@@ -32,7 +36,7 @@ $.widget("tlms.posts", $.tlms.base, {
   },
 
   _addPostToPage: function (postInfo) {
-    var post = $.parseHTML(JST["templates/posts/post"]({post: postInfo, current_man: this.current_man}));
+    var post = $.parseHTML(JST["templates/posts/post"]({post: postInfo, current_man: this.current_man, showDefault: this.showDefault}));
     $(this.postsArea).prepend(post);
     for (var i = 0, length = postInfo.comments.length; i < length; i++) {
       this._addCommentToPage(post, postInfo.comments[i])
@@ -116,13 +120,13 @@ $.widget("tlms.posts", $.tlms.base, {
   },
 
   _toggleComments: function (evt) {
-    if($(evt.currentTarget).data("shown") == "true") {
+    if($(evt.currentTarget).data("shown") == true) {
       $(evt.currentTarget).closest("div.panel-body").find("div.comments").hide();
-      $(evt.currentTarget).data("shown", "false");
+      $(evt.currentTarget).data("shown", false);
       $(evt.currentTarget).find("i:nth-child(1)").html("Show Comments");
     } else {
       $(evt.currentTarget).closest("div.panel-body").find("div.comments").show();
-      $(evt.currentTarget).data("shown", "true");
+      $(evt.currentTarget).data("shown", true);
       $(evt.currentTarget).find("i:nth-child(1)").html("Hide Comments");
     }
 

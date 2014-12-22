@@ -40,12 +40,8 @@ class PostsController < ApplicationController
 
   def addComment
     comment = Comment.create(:man_id => current_man.id, :post_id => params[:post_id], :message => params[:message])
+    comment.notify
     render json: comment.info
-  end
-
-  def show
-    @post = Post.find_by_id(params[:id])
-    redirect_to root_path, :flash => { :error => "You are not friends with the author of the post" } if current_man.id != @post.man.id && current_man.friends.collect(&:id).all? { |id| id != @post.man.id }
   end
 
   def info

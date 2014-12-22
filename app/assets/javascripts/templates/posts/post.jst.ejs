@@ -13,9 +13,19 @@
     <div class="panel-body">
       {{=post.message}}
       <div align="right" data-area="comments_link">
-        <a data-shown="false"><i>Show Comments</i>&nbsp;<i>(</i><i class="comment_count">{{=post.comments.length}}</i><i>)</i></a>
+        <a data-shown="{{=showDefault}}"><i>
+          {{ if (showDefault == false) { }}
+          Show
+          {{ } else { }}
+          Hide
+          {{ } }}
+          Comments</i>&nbsp;<i>(</i><i class="comment_count">{{=post.comments.length}}</i><i>)</i></a>
       </div>
-      <div class="comments">
+      <div class="comments"
+        {{ if (showDefault == false) { }}
+          style="display:none"
+        {{ } }}
+      >
         <div data-area="persistedComments"></div>
         <div data-area="newComment">
           <div class="row">

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141219065127) do
+ActiveRecord::Schema.define(version: 20141222054402) do
 
   create_table "comments", force: true do |t|
     t.integer  "man_id"
@@ -57,6 +57,16 @@ ActiveRecord::Schema.define(version: 20141219065127) do
   end
 
   add_index "men", ["username"], name: "index_men_on_username", unique: true
+
+  create_table "notifications", force: true do |t|
+    t.integer  "man_id"
+    t.integer  "entity_id"
+    t.string   "entity_type"
+    t.string   "message"
+    t.boolean  "read",        default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "posts", force: true do |t|
     t.integer  "man_id"

@@ -1,10 +1,12 @@
 <tr
-  {{ for (var i = 0, length = columns.length; i < length; i++) { }}
-    {{ if (typeof(columns[i]) == "string" ) { }}
-        data-{{=columns[i].toLowerCase().underscore()}}="{{= object[columns[i].toLowerCase().underscore()] }}"
+  {{ for (var index in object) { }}
+    {{ if (typeof(object[index]) == "string" || typeof(object[index]) == "boolean") { }}
+        data-{{=index}}="{{= object[index] }}"
     {{ } }}
   {{ } }}
 >
+
+
   {{ for (var i = 0, length = columns.length; i < length; i++) { }}
     {{ if (typeof(columns[i]) == "string" ) { }}
       <td>

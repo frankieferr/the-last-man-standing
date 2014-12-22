@@ -22,6 +22,8 @@ class Man < ActiveRecord::Base
 
   has_many :posts
 
+  has_many :notifications
+
   def friends
     return sent_friends + received_friends
   end
@@ -63,5 +65,9 @@ class Man < ActiveRecord::Base
                   :sexual_contact => fallen[:sexual_contact] || false,
                   :other => fallen[:other],
                   )
+  end
+
+  def unread_notifications
+    self.notifications.where(:read => false)
   end
 end
