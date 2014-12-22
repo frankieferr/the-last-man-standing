@@ -1,5 +1,4 @@
 class TimesFallenController < ApplicationController
-
   before_filter :authenticate_man!
 
   def index
