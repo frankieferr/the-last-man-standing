@@ -86,7 +86,7 @@ $.widget("tlms.fallen", $.tlms.base, {
 
   _manFellSuccess: function () {
     $(this.fallenModal).modal("hide");
-    if(location.pathname == "/times_fallen") {
+    if(location.pathname == "/times_fallen" || location.pathname == "/ladder") {
       location.reload();
     }
   },

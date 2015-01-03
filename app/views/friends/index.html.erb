@@ -1,23 +1,28 @@
 <div data-widget="friends_manager">
-  <div data-widget="friends_add">
-    <div class="form">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          Add Friend
-        </div>
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-md-10">
-              <input type="text" class="full-width" data-input="username"/>
+  <div class="row">
+    <div class="col-sm-12">
+      <div data-widget="friends_add">
+        <div class="form">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              Add Friend
             </div>
-            <div class="col-md-2">
-              <button class="btn btn-primary" data-button="add">Add</button>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-10">
+                  <input type="text" class="full-width" data-input="username"/>
+                </div>
+                <div class="col-md-2">
+                  <button class="btn btn-primary" data-button="add">Add</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
   <div class="row" style="height: 400px">
     <div class="col-sm-6 inherit-height">
       <div data-widget="friends_list" class="inherit-height">
@@ -54,6 +59,25 @@
                   <li class="active half-width"><a href="#received" data-toggle="tab">Received</a></li>
                   <li class="half-width"><a href="#sent" data-toggle="tab">Sent</a></li>
                 </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="padding-top:20px">
+    <div class="col-sm-12">
+      <div data-widget="friends_mutual">
+        <div class="form">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              Mutual Friends
+            </div>
+            <div class="panel-body">
+              <div class="panel-body">
+                <div data-widget="table" id="mutual_friends"></div>
               </div>
             </div>
           </div>

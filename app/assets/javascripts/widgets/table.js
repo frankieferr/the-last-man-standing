@@ -3,6 +3,7 @@ $.widget("frankie.table", {
     this.columns = [];
     this.data = [];
     this.conditionalRules = [];
+    this.hoverOvers = {};
 	},
 
   setColumns: function (columns) {
@@ -15,6 +16,10 @@ $.widget("frankie.table", {
 
   setConditionalRules: function (conditionalRules) {
     this.conditionalRules = conditionalRules;
+  },
+
+  setHoverOvers: function (hoverOvers) {
+    this.hoverOvers = hoverOvers;
   },
 
   createTable: function (evenlySpread) {
@@ -35,7 +40,12 @@ $.widget("frankie.table", {
   },
 
   addRow: function(object) {
-    var row = $.parseHTML(JST["templates/table/row"]({object: object, columns: this.columns}));
+    var row = $.parseHTML(JST["templates/table/row"]({
+      object: object,
+      columns: this.columns,
+      hoverOvers: this.hoverOvers
+    }));
+
     $(this.element).find("tbody").append(row);
 
     // See if there is the object for the icons

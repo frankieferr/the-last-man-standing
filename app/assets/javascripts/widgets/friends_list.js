@@ -10,6 +10,7 @@ $.widget("tlms.friends_list", $.tlms.base, {
   setupFriendsTable: function () {
     this._startWidgetsInsideWidget();
     this._callFunctionOfWidget(this.friendsTable, "setColumns", ["Username", "Name", "Email", this._getFriendsButtonsObject()]);
+    this._callFunctionOfWidget(this.friendsTable, "setHoverOvers", this._getFriendsHoverOverObject());
     this._callFunctionOfWidget(this.friendsTable, "setData", this._callFunctionOfWidget(this.managerElement, "getFriends"));
     this._callFunctionOfWidget(this.friendsTable, "createTable");
   },
@@ -44,6 +45,13 @@ $.widget("tlms.friends_list", $.tlms.base, {
       ]
     }
     return buttonObject;
+  },
+
+  _getFriendsHoverOverObject: function () {
+    var hoverOverObject = {
+      all: "mutual_friends",
+    }
+    return hoverOverObject;
   },
 
 })

@@ -5,15 +5,34 @@ class FriendsController < ApplicationController
   end
 
   def getAllFriends
-    render json: current_man.friends
+    friends = current_man.friends
+    formattedFriends = []
+    friends.each do |friend|
+      formattedFriends.push(friend.info(current_man))
+    end
+    render json: formattedFriends
   end
 
   def getAllSentRequests
-    render json: current_man.sent_requests
+    sent_requests = current_man.sent_requests
+    formattedSentRequests = []
+    sent_requests.each do |sent_request|
+      formattedSentRequests.push(sent_request.info(current_man))
+    end
+    render json: formattedSentRequests
   end
 
   def getAllReceivedRequests
-    render json: current_man.received_requests
+    received_requests = current_man.received_requests
+    formattedReceivedRequests = []
+    received_requests.each do |received_request|
+      formattedReceivedRequests.push(received_request.info(current_man))
+    end
+    render json: formattedReceivedRequests
+  end
+
+  def getAllMutualFriends
+    render json: current_man.all_mutual_friends
   end
 
   def add

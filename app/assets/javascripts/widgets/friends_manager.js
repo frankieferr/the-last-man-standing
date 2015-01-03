@@ -1,15 +1,17 @@
 $.widget("tlms.friends_manager", $.tlms.base, {
 
-  totalAjax: 3,
+  totalAjax: 4,
 
   _create: function() {
     this._super();
     this.friends = [];
     this.sentRequests = [];
     this.receivedRequests = [];
+    this.mutualFriends = [];
 
     this.friendsListElement = $(this.element).find("[data-widget=friends_list]")[0];
     this.requestsElement = $(this.element).find("[data-widget=friends_requests]")[0];
+    this.mutualFriendsElement = $(this.element).find("[data-widget=friends_mutual]")[0];
 
     this._setup();
   },
@@ -30,6 +32,11 @@ $.widget("tlms.friends_manager", $.tlms.base, {
     this._sendAjax({
       url: "/friends/getAllSentRequests",
       success: "_storeSentRequests"
+    });
+
+    this._sendAjax({
+      url: "/friends/getAllMutualFriends",
+      success: "_storeMutualFriends"
     });
   },
 
@@ -55,6 +62,12 @@ $.widget("tlms.friends_manager", $.tlms.base, {
     this._callFunctionOfWidget(this.requestsElement, "setupSentTable");
   },
 
+  _storeMutualFriends: function (response) {
+    this.mutualFriends = response;
+    this._successAjax();
+    this._callFunctionOfWidget(this.mutualFriendsElement, "setupMutualFriendsTable");
+  },
+
   getFriends: function () {
     return this.friends;
   },
@@ -65,6 +78,10 @@ $.widget("tlms.friends_manager", $.tlms.base, {
 
   getSentRequests: function () {
     return this.sentRequests;
+  },
+
+  getMutualFriends: function () {
+    return this.mutualFriends;
   },
 
 })

@@ -1,4 +1,4 @@
-<tr
+<tr title="{{= object[hoverOvers['all']] }}"
   {{ for (var index in object) { }}
     {{ if (typeof(object[index]) == "string" || typeof(object[index]) == "boolean") { }}
         data-{{=index}}="{{= object[index] }}"
@@ -9,7 +9,7 @@
 
   {{ for (var i = 0, length = columns.length; i < length; i++) { }}
     {{ if (typeof(columns[i]) == "string" ) { }}
-      <td>
+      <td {{ if(hoverOvers[columns[i].toLowerCase().underscore()]) { }} title="{{= object[hoverOvers[columns[i].toLowerCase().underscore()]] }}" {{ } }}>
 
         {{= object[columns[i].toLowerCase().underscore()] }}
 

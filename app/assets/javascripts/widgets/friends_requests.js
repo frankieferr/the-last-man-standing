@@ -19,6 +19,7 @@ $.widget("tlms.friends_requests", $.tlms.base, {
     this._startWidgetsInsideWidget();
 
     this._callFunctionOfWidget(this.receivedRequestsTable, "setColumns", ["Username", "Name", "Email", this._getReceivedRequestsButtonsObject()]);
+    this._callFunctionOfWidget(this.receivedRequestsTable, "setHoverOvers", this._getReceivedRequestsHoverOverObject());
     this._callFunctionOfWidget(this.receivedRequestsTable, "setData", this._callFunctionOfWidget(this.managerElement, "getReceivedRequests"));
     this._callFunctionOfWidget(this.receivedRequestsTable, "createTable");
   },
@@ -27,6 +28,7 @@ $.widget("tlms.friends_requests", $.tlms.base, {
     this._startWidgetsInsideWidget();
 
     this._callFunctionOfWidget(this.sentRequestsTable, "setColumns", ["Username", "Name", "Email", this._getSentRequestsButtonsObject()]);
+    this._callFunctionOfWidget(this.sentRequestsTable, "setHoverOvers", this._getSentRequestsHoverOverObject());
     this._callFunctionOfWidget(this.sentRequestsTable, "setData", this._callFunctionOfWidget(this.managerElement, "getSentRequests"));
     this._callFunctionOfWidget(this.sentRequestsTable, "createTable");
   },
@@ -122,4 +124,17 @@ $.widget("tlms.friends_requests", $.tlms.base, {
     return buttonObject;
   },
 
+  _getReceivedRequestsHoverOverObject: function () {
+    var hoverOverObject = {
+      all: "mutual_friends",
+    }
+    return hoverOverObject;
+  },
+
+  _getSentRequestsHoverOverObject: function () {
+    var hoverOverObject = {
+      all: "mutual_friends",
+    }
+    return hoverOverObject;
+  },
 })

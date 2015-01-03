@@ -50,7 +50,12 @@ class MenController < ApplicationController
         redirect_to "/" and return
       }
       format.json {
-        render json: (Man.all.to_a - [current_man])
+        men = (Man.all.to_a - [current_man])
+        formattedMen = []
+        men.each do |man|
+          formattedMen.push(man.info(current_man))
+        end
+        render json: formattedMen
       }
     end
   end
