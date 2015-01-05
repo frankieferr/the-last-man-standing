@@ -55,7 +55,7 @@ class MenController < ApplicationController
         men.each do |man|
           formattedMen.push(man.info(current_man))
         end
-        render json: formattedMen
+        render json: formattedMen || {status: "none"}
       }
     end
   end

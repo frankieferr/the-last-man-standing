@@ -10,7 +10,7 @@ class FriendsController < ApplicationController
     friends.each do |friend|
       formattedFriends.push(friend.info(current_man))
     end
-    render json: formattedFriends
+    render json: formattedFriends || {status: "none"}
   end
 
   def getAllSentRequests
@@ -19,7 +19,7 @@ class FriendsController < ApplicationController
     sent_requests.each do |sent_request|
       formattedSentRequests.push(sent_request.info(current_man))
     end
-    render json: formattedSentRequests
+    render json: formattedSentRequests || {status: "none"}
   end
 
   def getAllReceivedRequests
@@ -28,11 +28,11 @@ class FriendsController < ApplicationController
     received_requests.each do |received_request|
       formattedReceivedRequests.push(received_request.info(current_man))
     end
-    render json: formattedReceivedRequests
+    render json: formattedReceivedRequests || {status: "none"}
   end
 
   def getAllMutualFriends
-    render json: current_man.all_mutual_friends
+    render json: current_man.all_mutual_friends || {status: "none"}
   end
 
   def add
