@@ -44,7 +44,7 @@ class Man < ActiveRecord::Base
   end
 
   def friend?(man)
-    friendships = Friendship.where("(man_id = ? AND friend_id = ? AND accepted = 't') || " +
+    friendships = Friendship.where("(man_id = ? AND friend_id = ? AND accepted = 't') OR " +
                                    "(man_id = ? AND friend_id = ? AND accepted = 't')",
                                     self.id, man.id, man.id, self.id)
 
