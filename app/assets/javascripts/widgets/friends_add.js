@@ -39,7 +39,7 @@ $.widget("tlms.friends_add", $.tlms.base, {
       return $( "<li>" )
         .append( "<a>" +
                   "<i class='fa fa-user " + (item.friend ? "green": "blue") + "'></i> &nbsp;" + item.username + "<br>" +
-                  (item.name ? item.name + " - " + item.email + "&nbsp;" : "") + (item.mutual_friends ? "( Mutual Friends: " + item.mutual_friends + " )" : "") +
+                  (item.name ? item.name + " - " + item.email + "&nbsp;" : "") + (item.mutual_friends ? "( " + item.mutual_friends + " )" : "") +
                 "</a>" )
         .appendTo( ul );
     };

@@ -66,6 +66,13 @@ $.widget("frankie.table", {
         }
       };
     }
+
+    $(row).tooltip({
+      placement: "bottom"
+    });
+    $(row).find("[data-hover]").tooltip({
+      placement: "bottom"
+    });
   },
 
   _getIndexOfObject: function () {

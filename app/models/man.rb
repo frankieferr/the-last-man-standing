@@ -151,7 +151,7 @@ class Man < ActiveRecord::Base
     manHash["email"] = self.email
     mutual_friends = self.mutual_friends(man)
     if mutual_friends && mutual_friends.count > 0
-      manHash["mutual_friends"] = self.mutual_friends_message(mutual_friends)
+      manHash["mutual_friends"] = "Mutual Friends: " + self.mutual_friends_message(mutual_friends)
     end
     manHash["friend"] = self.friend?(man)
     return manHash
