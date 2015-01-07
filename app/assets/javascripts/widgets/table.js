@@ -68,10 +68,12 @@ $.widget("frankie.table", {
     }
 
     $(row).tooltip({
-      placement: "bottom"
+      placement: "bottom",
+      delay: { "show": 500, "hide": 0 }
     });
     $(row).find("[data-hover]").tooltip({
-      placement: "bottom"
+      placement: "bottom",
+      delay: { "show": 500, "hide": 0 }
     });
   },
 
