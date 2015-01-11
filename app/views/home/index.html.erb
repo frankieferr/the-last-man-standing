@@ -1,14 +1,35 @@
 
-
 <div class="page-header">
  <h1>
     <small>Welcome to </small>
     The Last Man Standing
  </h1>
 </div>
+
+<% if man_signed_in? %>
+
+<div data-widget="posts" data-get-url="/posts/all" data-show-default="false" class="inherit-height">
+  <div data-area="add_post" class="row" style="margin: 10px; 0px">
+    <div class="col-xs-1" data-area="current_man"> <i class='fa fa-user'></i> <b><%= current_man.username %></b></div>
+    <div class="col-xs-10">
+      <textarea data-textarea="post" style="width:100%; min-height: 80px" placeholder="Post something for your friends to see"></textarea>
+    </div>
+    <div class="col-md-1">
+      <button class="btn btn-primary" data-button="post">Post</button>
+    </div>
+  </div>
+  <div data-area="posts"></div>
+</div>
+
+<% else %>
+
 <p>
   This site consists of a group of men striving for sexual purity, and has been created as an aid in this constant battle.<br><br>
   It is a sort of competition between brothers in Christ who have created an account as a pledge to share with their accountability partners each time that they fall in this pursuit.<br><br>
   By creating an account, you are agreeing to share each and every time that you fall with your friends, and also to pray for each other - if you are going to slack off with posting, or pretend that you haven't fallen, do not bother creating an account. This website is not for you. <br><br>
   Good luck in this fight, and God bless!
 </p>
+
+<% end %>
+
+

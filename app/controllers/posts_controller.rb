@@ -1,10 +1,6 @@
 class PostsController < ApplicationController
   before_filter :authenticate_man!
 
-  def index
-
-  end
-
   def all
     respond_to do |format|
       format.html {

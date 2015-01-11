@@ -4,8 +4,6 @@ TheLastManStanding::Application.routes.draw do
   get "/notifications/all" => "notifications#all"
   get "/notifications/:id/show" => "notifications#show"
 
-
-  get "/posts" => "posts#index"
   get "/posts/all" => "posts#all"
   post "/posts/add" => "posts#add"
   post "/posts/addComment" => "posts#addComment"
