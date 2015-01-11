@@ -7,11 +7,11 @@ $.widget("tlms.friends_manager", $.tlms.base, {
     this.friends = [];
     this.sentRequests = [];
     this.receivedRequests = [];
-    this.mutualFriends = [];
+    this.suggestedFriends = [];
 
     this.friendsListElement = $(this.element).find("[data-widget=friends_list]")[0];
     this.requestsElement = $(this.element).find("[data-widget=friends_requests]")[0];
-    this.mutualFriendsElement = $(this.element).find("[data-widget=friends_mutual]")[0];
+    this.suggestedFriendsElement = $(this.element).find("[data-widget=friends_suggested]")[0];
 
     this._setup();
   },
@@ -35,8 +35,8 @@ $.widget("tlms.friends_manager", $.tlms.base, {
     });
 
     this._sendAjax({
-      url: "/friends/getAllMutualFriends",
-      success: "_storeMutualFriends"
+      url: "/friends/getAllSuggestedFriends",
+      success: "_storeSuggestedFriends"
     });
   },
 
@@ -62,10 +62,10 @@ $.widget("tlms.friends_manager", $.tlms.base, {
     this._callFunctionOfWidget(this.requestsElement, "setupSentTable");
   },
 
-  _storeMutualFriends: function (response) {
-    this.mutualFriends = response;
+  _storeSuggestedFriends: function (response) {
+    this.suggestedFriends = response;
     this._successAjax();
-    this._callFunctionOfWidget(this.mutualFriendsElement, "setupMutualFriendsTable");
+    this._callFunctionOfWidget(this.suggestedFriendsElement, "setupSuggestedFriendsTable");
   },
 
   getFriends: function () {
@@ -80,8 +80,8 @@ $.widget("tlms.friends_manager", $.tlms.base, {
     return this.sentRequests;
   },
 
-  getMutualFriends: function () {
-    return this.mutualFriends;
+  getSuggestedFriends: function () {
+    return this.suggestedFriends;
   },
 
 })

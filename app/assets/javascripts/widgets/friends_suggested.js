@@ -1,19 +1,19 @@
-$.widget("tlms.friends_mutual", $.tlms.base, {
+$.widget("tlms.friends_suggested", $.tlms.base, {
 
   _create: function() {
     this._super();
     this.managerElement = $(this.element).closest("[data-widget=friends_manager]")[0];
-    this.mutualFriendsTable = $(this.element).find("#mutual_friends[data-widget=table]");
+    this.suggestedFriendsTable = $(this.element).find("#suggested_friends[data-widget=table]");
   },
 
-  setupMutualFriendsTable: function () {
+  setupSuggestedFriendsTable: function () {
     this._startWidgetsInsideWidget();
-    this._callFunctionOfWidget(this.mutualFriendsTable, "setColumns", ["Username", "Name", "Email", "Mutual Friends", this._getMutualFriendsButtonsObject()]);
-    this._callFunctionOfWidget(this.mutualFriendsTable, "setData", this._callFunctionOfWidget(this.managerElement, "getMutualFriends"));
-    this._callFunctionOfWidget(this.mutualFriendsTable, "createTable");
+    this._callFunctionOfWidget(this.suggestedFriendsTable, "setColumns", ["Username", "Name", "Email", "Mutual Friends", this._getSuggestedFriendsButtonsObject()]);
+    this._callFunctionOfWidget(this.suggestedFriendsTable, "setData", this._callFunctionOfWidget(this.managerElement, "getSuggestedFriends"));
+    this._callFunctionOfWidget(this.suggestedFriendsTable, "createTable");
   },
 
-  _getMutualFriendsButtonsObject: function () {
+  _getSuggestedFriendsButtonsObject: function () {
     var buttonObject = {
       icons: [
         {
@@ -27,7 +27,7 @@ $.widget("tlms.friends_mutual", $.tlms.base, {
   },
 
   _requestFriendship: function (evt) {
-    var row = this._callFunctionOfWidget(this.mutualFriendsTable, "getRowFromElement", evt.currentTarget);
+    var row = this._callFunctionOfWidget(this.suggestedFriendsTable, "getRowFromElement", evt.currentTarget);
 
     $(this.element).mask("Sending Request");
     this._sendAjax({

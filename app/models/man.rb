@@ -128,20 +128,20 @@ class Man < ActiveRecord::Base
     return mutual_friends_info
   end
 
-  def all_mutual_friends
-    all_mutual_friends = []
+  def suggested_friends
+    suggested_friends = []
     unfriends = Man.all.to_a - [self] - self.friends.to_a - self.received_requests.to_a - self.sent_requests.to_a
-    return all_mutual_friends if unfriends.nil? || unfriends.count == 0
+    return suggested_friends if unfriends.nil? || unfriends.count == 0
 
     unfriends.each do |unfriend|
       mutual_friends = self.mutual_friends_info(unfriend)
-      all_mutual_friends.push(mutual_friends) if !mutual_friends.nil?
+      suggested_friends.push(mutual_friends) if !mutual_friends.nil?
     end
 
     # Sort in descending order of the number of mutual friends so that it lists them in that order
-    all_mutual_friends.sort! { |a, b| b["mutual_friends_count"] <=> a["mutual_friends_count"] }
+    suggested_friends.sort! { |a, b| b["mutual_friends_count"] <=> a["mutual_friends_count"] }
 
-    return all_mutual_friends
+    return suggested_friends
   end
 
   def info(man)

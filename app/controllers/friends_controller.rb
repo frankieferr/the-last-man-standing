@@ -31,8 +31,8 @@ class FriendsController < ApplicationController
     render json: formattedReceivedRequests || {status: "none"}
   end
 
-  def getAllMutualFriends
-    render json: current_man.all_mutual_friends || {status: "none"}
+  def getAllSuggestedFriends
+    render json: current_man.suggested_friends || {status: "none"}
   end
 
   def add

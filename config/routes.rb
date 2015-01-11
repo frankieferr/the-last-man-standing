@@ -21,7 +21,7 @@ TheLastManStanding::Application.routes.draw do
   get "/friends/getAllFriends" => "friends#getAllFriends"
   get "/friends/getAllSentRequests" => "friends#getAllSentRequests"
   get "/friends/getAllReceivedRequests" => "friends#getAllReceivedRequests"
-  get "/friends/getAllMutualFriends" => "friends#getAllMutualFriends"
+  get "/friends/getAllSuggestedFriends" => "friends#getAllSuggestedFriends"
 
   post "/friends/add"
   delete "/friends/delete"
