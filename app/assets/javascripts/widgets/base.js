@@ -24,7 +24,7 @@ $.widget("tlms.base", $.tlms.alerts, {
   },
 
   _bind: function (elem, action, callback) {
-    $(elem)[action](this[callback].bind(this))
+    $(elem).on(action, this[callback].bind(this))
   },
 
   _successCallbackFallback: function (response, status) {

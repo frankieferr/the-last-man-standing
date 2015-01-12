@@ -59,7 +59,7 @@ $.widget("tlms.posts", $.tlms.base, {
   },
 
   _submitPost: function () {
-    var message = $(this.postTextArea).val()
+    var message = $(this.postTextArea).val().trim();
 
     if(message == "") {
       return;
@@ -88,7 +88,7 @@ $.widget("tlms.posts", $.tlms.base, {
   },
 
   _addComment: function (evt) {
-    var message = $(evt.currentTarget).closest("div.row").find("textarea").val();
+    var message = $(evt.currentTarget).closest("div.row").find("textarea").val().trim();
     var postId = $(evt.currentTarget).closest("div.row").find("button").data("post-id")
     if(message == "" || postId == "") {
       return;

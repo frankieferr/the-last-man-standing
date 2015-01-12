@@ -100,7 +100,14 @@
               </div>
             </div>
 
-            <div data-widget="form"></div>
+            <div class="row form-property">
+              <div class="col-md-3" align="center">
+                <label for="fallen_message">Message for yourself:</label>
+              </div>
+              <div class="col-md-9">
+                <textarea id="fallen_message" name="fallen[message]"></textarea>
+              </div>
+            </div>
 
             <div align="center" class="row form-property">
               <div class="col-md-3">
@@ -138,6 +145,34 @@
         </div>
       </div>
     </div>
+
+    <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">Write a Post</h4>
+          </div>
+          <div class="modal-body">
+
+            <p align="center">
+              Take some time to write a post to your friends, maybe asking them to pray for you, or maybe for some help.
+            <br>
+              Remember that only your friends can see your posts, so feel free to write what you need.
+            </p>
+            <br>
+            <div>
+              <textarea data-textarea="post" style="width:100%; min-height: 80px" placeholder="Post something for your friends to see"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a class="btn btn-default" data-dismiss="modal">Close</a>
+            <a class="btn btn-primary" data-button="submit">Post</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
   <% end %>
 </body>
